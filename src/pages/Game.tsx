@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -27,18 +27,40 @@ const Game = () => {
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
   const [showConjugation, setShowConjugation] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [inputMode, setInputMode] = useState<'voice' | 'text'>('voice');
+  const [inputMode, setInputMode] = useState<'voice' | 'text'>('text');
   const [textAnswer, setTextAnswer] = useState('');
   const [revealedAnswer, setRevealedAnswer] = useState<string | null>(null);
   const [isRevealing, setIsRevealing] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(time > 0 ? time * 60 : 0);
+  const [timeLeft, setTimeLeft] = useState(level === 4 ? 30 : (time > 0 ? time * 60 : 0));
+  const [isGameOver, setIsGameOver] = useState(false);
+
+  const generateQuestion = useCallback(() => {
+    if (verbs.length === 0) return;
+    setShowConjugation(false);
+    setRevealedAnswer(null);
+    setIsRevealing(false);
+    setTextAnswer('');
+    const randomVerb = verbs[Math.floor(Math.random() * verbs.length)];
+    const availableTenses = Object.keys(randomVerb.conjugations) as Tense[];
+    if (availableTenses.length === 0) {
+        console.error(`Le verbe "${randomVerb.name}" n'a aucune conjugaison définie.`);
+        generateQuestion(); // Try again with another verb
+        return;
+    }
+    const randomTense = availableTenses[Math.floor(Math.random() * availableTenses.length)];
+    const randomPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
+    
+    setCurrentQuestion({ verb: randomVerb, tense: randomTense, pronoun: randomPronoun });
+  }, [verbs]);
 
   useEffect(() => {
-    if (time === 0 || isRevealing) return;
+    if (isGameOver) return;
+
+    if (time === 0 && level !== 4) return;
 
     if (timeLeft <= 0) {
-      speak("Le temps est écoulé. Fin de la partie.");
-      navigate('/');
+      speak("Partie terminée.");
+      setIsGameOver(true);
       return;
     }
 
@@ -47,7 +69,7 @@ const Game = () => {
     }, 1000);
 
     return () => clearInterval(timerId);
-  }, [timeLeft, time, navigate, isRevealing]);
+  }, [timeLeft, time, navigate, isRevealing, isGameOver, level]);
 
   useEffect(() => {
     const savedMute = localStorage.getItem('conjugaison-mute') === 'true';
@@ -91,30 +113,11 @@ const Game = () => {
     loadVerbs();
   }, [level, practiceVerbName, navigate]);
 
-  const generateQuestion = () => {
-    if (verbs.length === 0) return;
-    setShowConjugation(false);
-    setRevealedAnswer(null);
-    setIsRevealing(false);
-    setTextAnswer('');
-    const randomVerb = verbs[Math.floor(Math.random() * verbs.length)];
-    const availableTenses = Object.keys(randomVerb.conjugations) as Tense[];
-    if (availableTenses.length === 0) {
-        console.error(`Le verbe "${randomVerb.name}" n'a aucune conjugaison définie.`);
-        generateQuestion(); // Try again with another verb
-        return;
-    }
-    const randomTense = availableTenses[Math.floor(Math.random() * availableTenses.length)];
-    const randomPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
-    
-    setCurrentQuestion({ verb: randomVerb, tense: randomTense, pronoun: randomPronoun });
-  };
-
   useEffect(() => {
     if (!isLoading && verbs.length > 0) {
       generateQuestion();
     }
-  }, [isLoading, verbs]);
+  }, [isLoading, verbs, generateQuestion]);
 
   useEffect(() => {
     if (currentQuestion && !isRevealing) {
@@ -124,6 +127,38 @@ const Game = () => {
       speak(questionText);
     }
   }, [currentQuestion, isRevealing]);
+
+  const checkAnswer = () => {
+    if (!currentQuestion || !textAnswer.trim()) return;
+
+    const { verb, tense, pronoun } = currentQuestion;
+    const conjugationPronoun = getConjugationPronoun(pronoun);
+    const conjugationForTense = verb.conjugations[tense];
+    
+    let correctAnswer: string | undefined;
+    if (typeof conjugationForTense === 'object' && conjugationForTense !== null) {
+        correctAnswer = (conjugationForTense as any)[conjugationPronoun];
+    } else if (typeof conjugationForTense === 'string') {
+        correctAnswer = conjugationForTense;
+    }
+
+    if (correctAnswer) {
+        const isCorrect = textAnswer.trim().toLowerCase() === correctAnswer.toLowerCase();
+        if (isCorrect) {
+            setScore(prev => prev + 1);
+            speak("Correct !");
+            if (level === 4) {
+                setTimeLeft(prev => prev + 7);
+            }
+        } else {
+            speak("Incorrect.");
+            if (level === 4) {
+                setTimeLeft(prev => Math.max(0, prev - 5));
+            }
+        }
+        generateQuestion();
+    }
+  };
 
   const toggleMute = () => {
     const newMuteState = !isMuted;
@@ -183,6 +218,15 @@ const Game = () => {
     return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
   };
 
+  if (isGameOver) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-800/50">
+        <h1 className="text-8xl font-bold text-blue-900 mb-8" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Game Over</h1>
+        <Button onClick={() => navigate('/')} size="lg" className="text-xl">Menu Principal</Button>
+      </div>
+    );
+  }
+
   if (isLoading) {
     return <div className="min-h-screen flex items-center justify-center text-xl font-bold">Chargement des verbes...</div>;
   }
@@ -201,7 +245,7 @@ const Game = () => {
                 <CardContent className="p-0 flex-grow flex flex-col">
                     <div className="flex justify-between items-center mb-4">
                         <div className="w-40 text-left">
-                            {time > 0 ? (
+                            {(time > 0 || level === 4) ? (
                                 <span className="text-4xl font-bold text-purple-600" style={{ textShadow: '0 0 8px #fef08a' }}>
                                     {formatTime(timeLeft)}
                                 </span>
@@ -233,7 +277,7 @@ const Game = () => {
                                 <p className="text-4xl font-bold text-green-700 mt-2">{revealedAnswer}</p>
                             </div>
                         ) : (
-                            <div className="flex items-center justify-center w-full max-w-lg">
+                            <form onSubmit={(e) => { e.preventDefault(); checkAnswer(); }} className="flex items-center justify-center w-full max-w-lg">
                                 <div className="flex-1 flex justify-end">
                                     {/* Left spacer */}
                                 </div>
@@ -261,18 +305,19 @@ const Game = () => {
                                                 className="text-center text-2xl h-16 w-full"
                                                 value={textAnswer}
                                                 onChange={(e) => setTextAnswer(e.target.value)}
+                                                autoFocus
                                             />
-                                            <Button size="lg" className="w-full text-xl px-10 py-6 bg-green-500 hover:bg-green-600">Valider</Button>
+                                            <Button type="submit" size="lg" className="w-full text-xl px-10 py-6 bg-green-500 hover:bg-green-600">Valider</Button>
                                         </div>
                                     )}
                                 </div>
 
                                 <div className="flex-1 flex justify-start">
-                                    <Button variant="outline" size="icon" onClick={() => setInputMode(prev => prev === 'voice' ? 'text' : 'voice')} className="rounded-full shadow-md">
+                                    <Button type="button" variant="outline" size="icon" onClick={() => setInputMode(prev => prev === 'voice' ? 'text' : 'voice')} className="rounded-full shadow-md">
                                         {inputMode === 'voice' ? <Pencil className="h-6 w-6" /> : <Mic className="h-6 w-6" />}
                                     </Button>
                                 </div>
-                            </div>
+                            </form>
                         )}
                     </div>
 
