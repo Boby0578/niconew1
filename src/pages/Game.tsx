@@ -47,85 +47,6 @@ const Game = () => {
 
   const recognitionRef = useRef<any>(null);
 
-  const checkAnswer = useCallback((answerToCheck: string) => {
-    if (!currentQuestion || !answerToCheck.trim()) return;
-
-    const { verb, tense, pronoun } = currentQuestion;
-    const conjugationPronoun = getConjugationPronoun(pronoun);
-    const conjugationForTense = verb.conjugations[tense];
-    
-    let correctAnswer: string | undefined;
-    if (typeof conjugationForTense === 'object' && conjugationForTense !== null) {
-        correctAnswer = (conjugationForTense as any)[conjugationPronoun];
-    } else if (typeof conjugationForTense === 'string') {
-        correctAnswer = conjugationForTense;
-    }
-
-    if (correctAnswer) {
-        const normalizedUserAnswer = normalizeAnswer(answerToCheck);
-        const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
-
-        // Handle phonetic ambiguity for boire/voir
-        const alternativeAnswers: string[] = [];
-        if (verb.name === 'boire' && correctAnswer) alternativeAnswers.push(normalizeAnswer(correctAnswer.replace('b', 'v')));
-        if (verb.name === 'voir' && correctAnswer) alternativeAnswers.push(normalizeAnswer(correctAnswer.replace('v', 'b')));
-
-        const isCorrect = normalizedUserAnswer === normalizedCorrectAnswer || alternativeAnswers.includes(normalizedUserAnswer);
-
-        if (isCorrect) {
-            setScore(prev => prev + 1);
-            const randomFeedback = positiveFeedback[Math.floor(Math.random() * positiveFeedback.length)];
-            speak(randomFeedback);
-            if (level === 4) {
-                setTimeLeft(prev => prev + 7);
-            }
-        } else {
-            speak("Erreur");
-            if (level === 4) {
-                setTimeLeft(prev => Math.max(0, prev - 5));
-            }
-        }
-        generateQuestion();
-    }
-  }, [currentQuestion, level, verbs]);
-
-  useEffect(() => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      recognitionRef.current = new SpeechRecognition();
-      const recognition = recognitionRef.current;
-      recognition.lang = 'fr-FR';
-      recognition.continuous = false;
-      recognition.interimResults = false;
-
-      recognition.onresult = (event: any) => {
-        const transcript = event.results[0][0].transcript;
-        setTextAnswer(transcript);
-        checkAnswer(transcript);
-      };
-
-      recognition.onend = () => {
-        setIsRecording(false);
-      };
-      
-      recognition.onerror = (event: any) => {
-        console.error("Speech recognition error", event.error);
-        setIsRecording(false);
-      };
-    }
-  }, [checkAnswer]);
-
-  const handleMicToggle = () => {
-    if (!recognitionRef.current) return;
-
-    if (isRecording) {
-      recognitionRef.current.stop();
-    } else {
-      recognitionRef.current.start();
-    }
-    setIsRecording(!isRecording);
-  };
-
   const generateQuestion = useCallback(() => {
     if (verbs.length === 0) return;
     setShowConjugation(false);
@@ -144,6 +65,110 @@ const Game = () => {
     
     setCurrentQuestion({ verb: randomVerb, tense: randomTense, pronoun: randomPronoun });
   }, [verbs]);
+
+  const checkAnswer = useCallback((answerToCheck: string) => {
+    if (!currentQuestion || !answerToCheck.trim()) return;
+
+    const { verb, tense, pronoun } = currentQuestion;
+    const conjugationPronoun = getConjugationPronoun(pronoun);
+    const conjugationForTense = verb.conjugations[tense];
+    
+    let correctAnswer: string | undefined;
+    if (typeof conjugationForTense === 'object' && conjugationForTense !== null) {
+        correctAnswer = (conjugationForTense as any)[conjugationPronoun];
+    } else if (typeof conjugationForTense === 'string') {
+        correctAnswer = conjugationForTense;
+    }
+
+    if (correctAnswer) {
+        const normalizedUserAnswer = normalizeAnswer(answerToCheck);
+        const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
+
+        const alternativeAnswers: string[] = [];
+        if (verb.name === 'boire' && correctAnswer) alternativeAnswers.push(normalizeAnswer(correctAnswer.replace('b', 'v')));
+        if (verb.name === 'voir' && correctAnswer) alternativeAnswers.push(normalizeAnswer(correctAnswer.replace('v', 'b')));
+
+        let isCorrect = normalizedUserAnswer === normalizedCorrectAnswer || alternativeAnswers.includes(normalizedUserAnswer);
+
+        if (!isCorrect) {
+            if (normalizedCorrectAnswer.endsWith('ai') && normalizedUserAnswer === normalizedCorrectAnswer + 's') {
+                isCorrect = true;
+            } else if (normalizedCorrectAnswer.endsWith('ais') && normalizedUserAnswer === normalizedCorrectAnswer.slice(0, -1)) {
+                isCorrect = true;
+            }
+        }
+
+        if (isCorrect) {
+            setScore(prev => prev + 1);
+            const randomFeedback = positiveFeedback[Math.floor(Math.random() * positiveFeedback.length)];
+            speak(randomFeedback);
+            if (level === 4) {
+                setTimeLeft(prev => prev + 7);
+            }
+        } else {
+            speak("Erreur");
+            if (level === 4) {
+                setTimeLeft(prev => Math.max(0, prev - 5));
+            }
+        }
+        generateQuestion();
+    }
+  }, [currentQuestion, level, generateQuestion]);
+
+  useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        console.warn("La reconnaissance vocale n'est pas supportée par ce navigateur.");
+        if (inputMode === 'voice') setInputMode('text');
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'fr-FR';
+    recognition.continuous = true;
+    recognition.interimResults = false;
+
+    recognition.onresult = (event: any) => {
+        const last = event.results.length - 1;
+        const transcript = event.results[last][0].transcript;
+        checkAnswer(transcript.trim());
+    };
+
+    recognition.onend = () => {
+        setIsRecording(false);
+    };
+
+    recognition.onerror = (event: any) => {
+        console.error("Erreur de reconnaissance vocale:", event.error);
+    };
+
+    recognitionRef.current = recognition;
+
+    return () => {
+        if (recognitionRef.current) {
+            recognitionRef.current.stop();
+        }
+    };
+  }, [checkAnswer, inputMode]);
+
+  const handleMicToggle = () => {
+    if (!recognitionRef.current) {
+        console.error("La reconnaissance vocale n'est pas initialisée.");
+        return;
+    }
+
+    if (isRecording) {
+        recognitionRef.current.stop();
+    } else {
+        try {
+            recognitionRef.current.start();
+            setIsRecording(true);
+        } catch (e) {
+            console.error("Erreur au démarrage de la reconnaissance vocale:", e);
+            setIsRecording(false);
+        }
+    }
+  };
 
   useEffect(() => {
     if (isGameOver) return;
@@ -337,8 +362,11 @@ const Game = () => {
                                 <p className="text-4xl font-bold text-green-700 mt-2">{revealedAnswer}</p>
                             </div>
                         ) : (
-                            level === 4 ? (
-                                <div className="w-full max-w-lg flex flex-col items-center">
+                            <div className="flex items-center justify-center w-full max-w-lg">
+                                <div className="flex-1 flex justify-end">
+                                    {inputMode === 'text' && <div className="w-12"></div>}
+                                </div>
+                                <div className="px-4 w-full">
                                     {inputMode === 'voice' ? (
                                         <div className="flex flex-col items-center">
                                             <div 
@@ -351,9 +379,6 @@ const Game = () => {
                                                 <Mic className="h-24 w-24 sm:h-32 sm:w-32 text-white" />
                                             </div>
                                             <p className="mt-4 text-xl font-semibold text-gray-600">{isRecording ? "Parlez..." : "Appuyez pour parler"}</p>
-                                            <Button type="button" variant="outline" size="sm" onClick={() => setInputMode('text')} className="mt-4">
-                                                <Pencil className="mr-2 h-4 w-4" /> Écrire la réponse
-                                            </Button>
                                         </div>
                                     ) : (
                                         <form onSubmit={(e) => { e.preventDefault(); checkAnswer(textAnswer); }} className="w-full max-w-lg flex flex-col items-center gap-4">
@@ -367,51 +392,15 @@ const Game = () => {
                                                 autoFocus
                                             />
                                             <Button type="submit" size="lg" className="w-full text-xl px-10 py-6 bg-green-500 hover:bg-green-600">Valider</Button>
-                                            <Button type="button" variant="outline" size="sm" onClick={() => setInputMode('voice')} className="mt-2">
-                                                <Mic className="mr-2 h-4 w-4" /> Utiliser la voix
-                                            </Button>
                                         </form>
                                     )}
                                 </div>
-                            ) : (
-                                <form onSubmit={(e) => { e.preventDefault(); checkAnswer(textAnswer); }} className="flex items-center justify-center w-full max-w-lg">
-                                    <div className="flex-1 flex justify-end"></div>
-                                    <div className="px-4 w-full">
-                                        {inputMode === 'voice' ? (
-                                            <div className="flex flex-col items-center">
-                                                <div 
-                                                    className={cn(
-                                                        "h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-orange-400 hover:bg-orange-500 active:bg-red-600 shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer",
-                                                        isRecording && "ring-4 ring-red-500 ring-offset-2"
-                                                    )}
-                                                    onClick={handleMicToggle}
-                                                >
-                                                    <Mic className="h-24 w-24 sm:h-32 sm:w-32 text-white" />
-                                                </div>
-                                                <p className="mt-4 text-xl font-semibold text-gray-600">{isRecording ? "Parlez..." : "Appuyez pour parler"}</p>
-                                            </div>
-                                        ) : (
-                                            <div className="w-full max-w-lg flex flex-col items-center gap-4">
-                                                <p className="text-xl font-semibold text-gray-600 mb-2">Écrivez votre réponse</p>
-                                                <Input
-                                                    type="text"
-                                                    placeholder="Votre réponse..."
-                                                    className="text-center text-2xl h-16 w-full"
-                                                    value={textAnswer}
-                                                    onChange={(e) => setTextAnswer(e.target.value)}
-                                                    autoFocus
-                                                />
-                                                <Button type="submit" size="lg" className="w-full text-xl px-10 py-6 bg-green-500 hover:bg-green-600">Valider</Button>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="flex-1 flex justify-start">
-                                        <Button type="button" variant="outline" size="icon" onClick={() => setInputMode(prev => prev === 'voice' ? 'text' : 'voice')} className="rounded-full shadow-md">
-                                            {inputMode === 'voice' ? <Pencil className="h-6 w-6" /> : <Mic className="h-6 w-6" />}
-                                        </Button>
-                                    </div>
-                                </form>
-                            )
+                                <div className="flex-1 flex justify-start">
+                                    <Button type="button" variant="outline" size="icon" onClick={() => setInputMode(prev => prev === 'voice' ? 'text' : 'voice')} className="rounded-full shadow-md">
+                                        {inputMode === 'voice' ? <Pencil className="h-6 w-6" /> : <Mic className="h-6 w-6" />}
+                                    </Button>
+                                </div>
+                            </div>
                         )}
                     </div>
 
