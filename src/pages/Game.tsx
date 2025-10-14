@@ -33,6 +33,7 @@ const Game = () => {
   const [isRevealing, setIsRevealing] = useState(false);
   const [timeLeft, setTimeLeft] = useState(level === 4 ? 30 : (time > 0 ? time * 60 : 0));
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
 
   const generateQuestion = useCallback(() => {
     if (verbs.length === 0) return;
@@ -281,10 +282,20 @@ const Game = () => {
                                 <div className="w-full max-w-lg flex flex-col items-center">
                                     {inputMode === 'voice' ? (
                                         <div className="flex flex-col items-center">
-                                            <div className="h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-orange-400 hover:bg-orange-500 active:bg-red-600 shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer">
+                                            <div 
+                                                className={cn(
+                                                    "h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-orange-400 hover:bg-orange-500 active:bg-red-600 shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer",
+                                                    isRecording && "ring-4 ring-red-500 ring-offset-2"
+                                                )}
+                                                onMouseDown={() => setIsRecording(true)}
+                                                onMouseUp={() => setIsRecording(false)}
+                                                onMouseLeave={() => setIsRecording(false)}
+                                                onTouchStart={() => setIsRecording(true)}
+                                                onTouchEnd={() => setIsRecording(false)}
+                                            >
                                                 <Mic className="h-24 w-24 sm:h-32 sm:w-32 text-white" />
                                             </div>
-                                            <p className="mt-4 text-xl font-semibold text-gray-600">Appuyez pour parler</p>
+                                            <p className="mt-4 text-xl font-semibold text-gray-600">{isRecording ? "Parlez" : "Appuyez pour parler"}</p>
                                             <Button type="button" variant="outline" size="sm" onClick={() => setInputMode('text')} className="mt-4">
                                                 <Pencil className="mr-2 h-4 w-4" /> Écrire la réponse
                                             </Button>
@@ -313,10 +324,20 @@ const Game = () => {
                                     <div className="px-4 w-full">
                                         {inputMode === 'voice' ? (
                                             <div className="flex flex-col items-center">
-                                                <div className="h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-orange-400 hover:bg-orange-500 active:bg-red-600 shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer">
+                                                <div 
+                                                    className={cn(
+                                                        "h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-orange-400 hover:bg-orange-500 active:bg-red-600 shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer",
+                                                        isRecording && "ring-4 ring-red-500 ring-offset-2"
+                                                    )}
+                                                    onMouseDown={() => setIsRecording(true)}
+                                                    onMouseUp={() => setIsRecording(false)}
+                                                    onMouseLeave={() => setIsRecording(false)}
+                                                    onTouchStart={() => setIsRecording(true)}
+                                                    onTouchEnd={() => setIsRecording(false)}
+                                                >
                                                     <Mic className="h-24 w-24 sm:h-32 sm:w-32 text-white" />
                                                 </div>
-                                                <p className="mt-4 text-xl font-semibold text-gray-600">Appuyez pour parler</p>
+                                                <p className="mt-4 text-xl font-semibold text-gray-600">{isRecording ? "Parlez" : "Appuyez pour parler"}</p>
                                             </div>
                                         ) : (
                                             <div className="w-full max-w-lg flex flex-col items-center gap-4">
