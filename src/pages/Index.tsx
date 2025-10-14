@@ -106,7 +106,7 @@ const Index = () => {
               )}
             >
               <h3 className="font-bold text-xl">Niveau 3</h3>
-              <p className="text-sm">Les 21 temps de la langue française</p>
+              <p className="text-sm">Les 22 temps de la langue française</p>
             </button>
             <button
               onClick={() => setLevel(4)}
