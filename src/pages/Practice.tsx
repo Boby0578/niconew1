@@ -69,6 +69,7 @@ const Practice = () => {
                         <CommandItem
                           key={verb.name}
                           value={verb.name}
+                          className="text-lg"
                           onSelect={(currentValue) => {
                             const verb = verbs.find(v => v.name.toLowerCase() === currentValue.toLowerCase());
                             setSelectedVerb(verb || null);
