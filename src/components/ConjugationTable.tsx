@@ -30,11 +30,25 @@ const ConjugationTable: React.FC<ConjugationTableProps> = ({ verb }) => {
         textToSpeak = `il ${value}, elle ${value}`;
       } else if (pronoun === 'ils/elles') {
         textToSpeak = `ils ${value}, elles ${value}`;
+      } else if (pronoun === 'je' && value && ['a', 'e', 'i', 'o', 'u', 'h', 'y'].includes(value.charAt(0).toLowerCase())) {
+        textToSpeak = `j'${value}`;
       } else {
         textToSpeak = `${pronoun} ${value}`;
       }
     }
     speak(textToSpeak);
+  };
+
+  const formatDisplay = (pronoun: string, value: string, tense: string): string => {
+    if (tense.toLowerCase().includes('subjonctif')) {
+      return value;
+    }
+
+    if (pronoun === 'je' && value && ['a', 'e', 'i', 'o', 'u', 'h', 'y'].includes(value.charAt(0).toLowerCase())) {
+      return `j'${value}`;
+    }
+    
+    return `${pronoun} ${value}`;
   };
 
   return (
@@ -60,8 +74,7 @@ const ConjugationTable: React.FC<ConjugationTableProps> = ({ verb }) => {
                     <ul>
                     {conjugation && Object.entries(conjugation).map(([pronoun, value]) => (
                         <li key={pronoun} className="flex justify-between items-center py-2 border-b border-gray-200/80 last:border-b-0 text-lg">
-                        <span className="w-1/4 font-semibold">{pronoun}</span>
-                        <span className="flex-grow text-left">{value}</span>
+                        <span className="flex-grow text-left">{formatDisplay(pronoun, value as string, tense)}</span>
                         <Button variant="ghost" size="icon" className="rounded-full" onClick={() => handleSpeak(pronoun, value as string, tense)}>
                             <Volume2 className="h-5 w-5 text-cyan-600" />
                         </Button>

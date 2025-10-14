@@ -161,7 +161,7 @@ const Game = () => {
         let textToDisplayAndSpeak = `${pronoun} ${correctAnswer}`;
         if (tense.includes('subjonctif')) {
             textToDisplayAndSpeak = correctAnswer;
-        } else if (pronoun === 'je' && ['a', 'e', 'i', 'o', 'u', 'h'].includes(correctAnswer.charAt(0).toLowerCase())) {
+        } else if (pronoun === 'je' && correctAnswer && ['a', 'e', 'i', 'o', 'u', 'h', 'y'].includes(correctAnswer.charAt(0).toLowerCase())) {
             textToDisplayAndSpeak = `j'${correctAnswer}`;
         }
         
