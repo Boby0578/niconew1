@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { X, Mic, Volume2, VolumeX, Pencil } from 'lucide-react';
+import { X, Mic, Volume2, VolumeX, Pencil, Infinity } from 'lucide-react';
 import { getTensePreposition, getPronounText, getPronounHint, Verb, Tense, Pronoun, pronouns, getConjugationPronoun, formatTenseName } from '@/data/verbs';
 import { cn } from '@/lib/utils';
 import ConjugationTable from '@/components/ConjugationTable';
@@ -31,6 +31,23 @@ const Game = () => {
   const [textAnswer, setTextAnswer] = useState('');
   const [revealedAnswer, setRevealedAnswer] = useState<string | null>(null);
   const [isRevealing, setIsRevealing] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(time > 0 ? time * 60 : 0);
+
+  useEffect(() => {
+    if (time === 0 || isRevealing) return;
+
+    if (timeLeft <= 0) {
+      speak("Le temps est écoulé. Fin de la partie.");
+      navigate('/');
+      return;
+    }
+
+    const timerId = setInterval(() => {
+      setTimeLeft(prevTime => prevTime > 0 ? prevTime - 1 : 0);
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, [timeLeft, time, navigate, isRevealing]);
 
   useEffect(() => {
     const savedMute = localStorage.getItem('conjugaison-mute') === 'true';
@@ -145,6 +162,12 @@ const Game = () => {
     }
   };
 
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+  };
+
   if (isLoading) {
     return <div className="min-h-screen flex items-center justify-center text-xl font-bold">Chargement des verbes...</div>;
   }
@@ -161,15 +184,24 @@ const Game = () => {
         <div className="w-full flex-grow flex flex-col mx-auto max-w-sm md:max-w-4xl">
             <Card className="w-full flex-grow flex flex-col bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8">
                 <CardContent className="p-0 flex-grow flex flex-col">
-                    <div className="flex justify-between items-start mb-4">
-                        <Button variant="destructive" size="sm" onClick={() => navigate('/')} disabled={isRevealing}>
-                            <X className="mr-1 h-4 w-4" /> Quitter
-                        </Button>
+                    <div className="flex justify-between items-center mb-4">
+                        <div className="w-40 text-left">
+                            {time > 0 ? (
+                                <span className="text-4xl font-bold text-purple-600" style={{ textShadow: '0 0 8px #fef08a' }}>
+                                    {formatTime(timeLeft)}
+                                </span>
+                            ) : (
+                                <Infinity className="h-10 w-10 text-purple-600" style={{ filter: 'drop-shadow(0 0 5px #fef08a)' }} />
+                            )}
+                        </div>
                         <div className="text-center text-2xl font-bold text-gray-600">Score: {score}</div>
-                        <div className="w-24 text-right">
+                        <div className="w-40 flex justify-end items-center gap-2">
                            <Button onClick={toggleMute} variant="outline" size="icon" className="bg-white/60 backdrop-blur-sm rounded-full shadow-md border-gray-300 hover:bg-white/80" disabled={isRevealing}>
                                {isMuted ? <VolumeX className="h-5 w-5 text-gray-700" /> : <Volume2 className="h-5 w-5 text-gray-700" />}
                            </Button>
+                           <Button variant="destructive" size="sm" onClick={() => navigate('/')} disabled={isRevealing}>
+                                <X className="mr-1 h-4 w-4" /> Quitter
+                            </Button>
                         </div>
                     </div>
 

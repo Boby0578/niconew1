@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { Settings } from 'lucide-react';
+import { Settings, Infinity } from 'lucide-react';
 import { speak } from "@/utils/speech";
 
 const Index = () => {
@@ -132,11 +132,11 @@ const Index = () => {
                 onClick={() => setTime(t)}
                 variant={time === t ? "default" : "outline"}
                 className={cn(
-                  "transition-all rounded-full px-6",
+                  "transition-all rounded-full w-28 h-12 text-lg",
                   time === t ? "bg-gray-800 text-white scale-110" : "bg-white"
                 )}
               >
-                {t === 0 ? "Sans limite" : `${t} min`}
+                {t === 0 ? <Infinity className="h-6 w-6 mx-auto" /> : `${t} min`}
               </Button>
             ))}
           </div>
