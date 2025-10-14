@@ -37,7 +37,7 @@ const Game = () => {
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
   const [showConjugation, setShowConjugation] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [inputMode, setInputMode] = useState<'voice' | 'text'>(level === 4 ? 'voice' : 'text');
+  const [inputMode, setInputMode] = useState<'voice' | 'text'>('voice');
   const [textAnswer, setTextAnswer] = useState('');
   const [revealedAnswer, setRevealedAnswer] = useState<string | null>(null);
   const [isRevealing, setIsRevealing] = useState(false);
