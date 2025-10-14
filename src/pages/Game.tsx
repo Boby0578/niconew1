@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -15,6 +15,16 @@ interface Question {
   tense: Tense;
   pronoun: Pronoun;
 }
+
+const positiveFeedback = ["Bravo !", "Continue comme ça !", "C'est bien !", "Formidable !"];
+
+const normalizeAnswer = (answer: string) => {
+  return answer
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // Remove accents
+    .replace(/[^a-z0-9]/g, ''); // Remove all non-alphanumeric characters
+};
 
 const Game = () => {
   const location = useLocation();
@@ -34,6 +44,87 @@ const Game = () => {
   const [timeLeft, setTimeLeft] = useState(level === 4 ? 30 : (time > 0 ? time * 60 : 0));
   const [isGameOver, setIsGameOver] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+
+  const recognitionRef = useRef<any>(null);
+
+  const checkAnswer = useCallback((answerToCheck: string) => {
+    if (!currentQuestion || !answerToCheck.trim()) return;
+
+    const { verb, tense, pronoun } = currentQuestion;
+    const conjugationPronoun = getConjugationPronoun(pronoun);
+    const conjugationForTense = verb.conjugations[tense];
+    
+    let correctAnswer: string | undefined;
+    if (typeof conjugationForTense === 'object' && conjugationForTense !== null) {
+        correctAnswer = (conjugationForTense as any)[conjugationPronoun];
+    } else if (typeof conjugationForTense === 'string') {
+        correctAnswer = conjugationForTense;
+    }
+
+    if (correctAnswer) {
+        const normalizedUserAnswer = normalizeAnswer(answerToCheck);
+        const normalizedCorrectAnswer = normalizeAnswer(correctAnswer);
+
+        // Handle phonetic ambiguity for boire/voir
+        const alternativeAnswers: string[] = [];
+        if (verb.name === 'boire' && correctAnswer) alternativeAnswers.push(normalizeAnswer(correctAnswer.replace('b', 'v')));
+        if (verb.name === 'voir' && correctAnswer) alternativeAnswers.push(normalizeAnswer(correctAnswer.replace('v', 'b')));
+
+        const isCorrect = normalizedUserAnswer === normalizedCorrectAnswer || alternativeAnswers.includes(normalizedUserAnswer);
+
+        if (isCorrect) {
+            setScore(prev => prev + 1);
+            const randomFeedback = positiveFeedback[Math.floor(Math.random() * positiveFeedback.length)];
+            speak(randomFeedback);
+            if (level === 4) {
+                setTimeLeft(prev => prev + 7);
+            }
+        } else {
+            speak("Erreur");
+            if (level === 4) {
+                setTimeLeft(prev => Math.max(0, prev - 5));
+            }
+        }
+        generateQuestion();
+    }
+  }, [currentQuestion, level, verbs]);
+
+  useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      recognitionRef.current = new SpeechRecognition();
+      const recognition = recognitionRef.current;
+      recognition.lang = 'fr-FR';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onresult = (event: any) => {
+        const transcript = event.results[0][0].transcript;
+        setTextAnswer(transcript);
+        checkAnswer(transcript);
+      };
+
+      recognition.onend = () => {
+        setIsRecording(false);
+      };
+      
+      recognition.onerror = (event: any) => {
+        console.error("Speech recognition error", event.error);
+        setIsRecording(false);
+      };
+    }
+  }, [checkAnswer]);
+
+  const handleMicToggle = () => {
+    if (!recognitionRef.current) return;
+
+    if (isRecording) {
+      recognitionRef.current.stop();
+    } else {
+      recognitionRef.current.start();
+    }
+    setIsRecording(!isRecording);
+  };
 
   const generateQuestion = useCallback(() => {
     if (verbs.length === 0) return;
@@ -128,38 +219,6 @@ const Game = () => {
       speak(questionText);
     }
   }, [currentQuestion, isRevealing]);
-
-  const checkAnswer = () => {
-    if (!currentQuestion || !textAnswer.trim()) return;
-
-    const { verb, tense, pronoun } = currentQuestion;
-    const conjugationPronoun = getConjugationPronoun(pronoun);
-    const conjugationForTense = verb.conjugations[tense];
-    
-    let correctAnswer: string | undefined;
-    if (typeof conjugationForTense === 'object' && conjugationForTense !== null) {
-        correctAnswer = (conjugationForTense as any)[conjugationPronoun];
-    } else if (typeof conjugationForTense === 'string') {
-        correctAnswer = conjugationForTense;
-    }
-
-    if (correctAnswer) {
-        const isCorrect = textAnswer.trim().toLowerCase() === correctAnswer.toLowerCase();
-        if (isCorrect) {
-            setScore(prev => prev + 1);
-            speak("Correct !");
-            if (level === 4) {
-                setTimeLeft(prev => prev + 7);
-            }
-        } else {
-            speak("Incorrect.");
-            if (level === 4) {
-                setTimeLeft(prev => Math.max(0, prev - 5));
-            }
-        }
-        generateQuestion();
-    }
-  };
 
   const toggleMute = () => {
     const newMuteState = !isMuted;
@@ -287,21 +346,17 @@ const Game = () => {
                                                     "h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-orange-400 hover:bg-orange-500 active:bg-red-600 shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer",
                                                     isRecording && "ring-4 ring-red-500 ring-offset-2"
                                                 )}
-                                                onMouseDown={() => setIsRecording(true)}
-                                                onMouseUp={() => setIsRecording(false)}
-                                                onMouseLeave={() => setIsRecording(false)}
-                                                onTouchStart={() => setIsRecording(true)}
-                                                onTouchEnd={() => setIsRecording(false)}
+                                                onClick={handleMicToggle}
                                             >
                                                 <Mic className="h-24 w-24 sm:h-32 sm:w-32 text-white" />
                                             </div>
-                                            <p className="mt-4 text-xl font-semibold text-gray-600">{isRecording ? "Parlez" : "Appuyez pour parler"}</p>
+                                            <p className="mt-4 text-xl font-semibold text-gray-600">{isRecording ? "Parlez..." : "Appuyez pour parler"}</p>
                                             <Button type="button" variant="outline" size="sm" onClick={() => setInputMode('text')} className="mt-4">
                                                 <Pencil className="mr-2 h-4 w-4" /> Écrire la réponse
                                             </Button>
                                         </div>
                                     ) : (
-                                        <form onSubmit={(e) => { e.preventDefault(); checkAnswer(); }} className="w-full max-w-lg flex flex-col items-center gap-4">
+                                        <form onSubmit={(e) => { e.preventDefault(); checkAnswer(textAnswer); }} className="w-full max-w-lg flex flex-col items-center gap-4">
                                             <p className="text-xl font-semibold text-gray-600 mb-2">Écrivez votre réponse</p>
                                             <Input
                                                 type="text"
@@ -319,7 +374,7 @@ const Game = () => {
                                     )}
                                 </div>
                             ) : (
-                                <form onSubmit={(e) => { e.preventDefault(); checkAnswer(); }} className="flex items-center justify-center w-full max-w-lg">
+                                <form onSubmit={(e) => { e.preventDefault(); checkAnswer(textAnswer); }} className="flex items-center justify-center w-full max-w-lg">
                                     <div className="flex-1 flex justify-end"></div>
                                     <div className="px-4 w-full">
                                         {inputMode === 'voice' ? (
@@ -329,15 +384,11 @@ const Game = () => {
                                                         "h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-orange-400 hover:bg-orange-500 active:bg-red-600 shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer",
                                                         isRecording && "ring-4 ring-red-500 ring-offset-2"
                                                     )}
-                                                    onMouseDown={() => setIsRecording(true)}
-                                                    onMouseUp={() => setIsRecording(false)}
-                                                    onMouseLeave={() => setIsRecording(false)}
-                                                    onTouchStart={() => setIsRecording(true)}
-                                                    onTouchEnd={() => setIsRecording(false)}
+                                                    onClick={handleMicToggle}
                                                 >
                                                     <Mic className="h-24 w-24 sm:h-32 sm:w-32 text-white" />
                                                 </div>
-                                                <p className="mt-4 text-xl font-semibold text-gray-600">{isRecording ? "Parlez" : "Appuyez pour parler"}</p>
+                                                <p className="mt-4 text-xl font-semibold text-gray-600">{isRecording ? "Parlez..." : "Appuyez pour parler"}</p>
                                             </div>
                                         ) : (
                                             <div className="w-full max-w-lg flex flex-col items-center gap-4">
