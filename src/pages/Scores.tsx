@@ -1,22 +1,34 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const ScoreCategory = ({ title }: { title: string }) => (
+  <div className="bg-white/50 rounded-lg p-6 shadow-inner">
+    <h3 className="font-bold text-2xl mb-4 text-gray-800">{title}</h3>
+    <p className="text-gray-500">Aucun score enregistré.</p>
+  </div>
+);
 
 const Scores = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <Card className="w-full max-w-md bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg p-8 text-center">
-        <CardHeader className="p-0 mb-6">
-          <h1 className="font-pacifico text-5xl text-pink-500">
+      <Card className="w-full max-w-4xl bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg p-8 text-center">
+        <CardHeader className="p-0 mb-8">
+          <CardTitle className="font-pacifico text-5xl text-pink-500">
             Tableau des Scores
-          </h1>
+          </CardTitle>
+          <h2 className="text-4xl font-bold text-red-600 mt-4">
+            Meilleurs joueurs
+          </h2>
         </CardHeader>
         <CardContent className="p-0">
-          <div className="bg-white/50 rounded-lg p-6 mb-8">
-            <h2 className="font-bold text-xl mb-4 text-gray-700">Tableau des Scores</h2>
-            <p className="text-gray-500">Aucun score enregistré.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <ScoreCategory title="Niveau 1" />
+            <ScoreCategory title="Niveau 2" />
+            <ScoreCategory title="Niveau 3" />
+            <ScoreCategory title="Mode Contest" />
           </div>
           <Button
             onClick={() => navigate("/")}
