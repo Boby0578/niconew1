@@ -145,6 +145,23 @@ const Index = () => {
         <Button onClick={startGame} size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-xl py-6 px-10 rounded-full shadow-lg transform hover:scale-105 transition-transform duration-300">
             Jouer !
         </Button>
+
+        <div className="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+          <Button 
+            onClick={() => navigate("/practice")} 
+            size="lg" 
+            className="bg-lime-500 hover:bg-lime-600 text-white font-bold text-lg py-4 px-8 rounded-full shadow-md"
+          >
+            Mode pratique
+          </Button>
+          <Button 
+            onClick={() => navigate("/scores")} 
+            size="lg" 
+            className="bg-red-500 hover:bg-red-600 text-white font-bold text-lg py-4 px-8 rounded-full shadow-md"
+          >
+            Tableau des scores
+          </Button>
+        </div>
       </div>
     </div>
   );
