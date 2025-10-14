@@ -7,7 +7,7 @@ import { getTensePreposition, getPronounText, getPronounHint, Verb, Tense, Prono
 import { cn } from '@/lib/utils';
 import ConjugationTable from '@/components/ConjugationTable';
 import { speak } from '@/utils/speech';
-import { getVerbsForLevel } from '@/data/verbLoader';
+import { getVerbsForLevel, getAllVerbs } from '@/data/verbLoader';
 import { Input } from "@/components/ui/input";
 
 interface Question {
@@ -19,7 +19,7 @@ interface Question {
 const Game = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { level, time, name } = location.state || { level: 1, time: 0, name: 'Joueur' };
+  const { level, time, name, practiceVerbName } = location.state || { level: 1, time: 0, name: 'Joueur', practiceVerbName: null };
 
   const [verbs, setVerbs] = useState<Verb[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,7 +56,22 @@ const Game = () => {
     const loadVerbs = async () => {
       setIsLoading(true);
       try {
-        const loadedVerbs = await getVerbsForLevel(level);
+        let loadedVerbs: Verb[];
+        if (practiceVerbName) {
+          const allVerbs = await getAllVerbs();
+          const practiceVerb = allVerbs.find(v => v.name === practiceVerbName);
+          if (practiceVerb) {
+            loadedVerbs = [practiceVerb];
+          } else {
+            console.error(`Verbe de pratique "${practiceVerbName}" non trouvé.`);
+            speak("Le verbe de pratique n'a pas été trouvé.");
+            navigate('/');
+            return;
+          }
+        } else {
+          loadedVerbs = await getVerbsForLevel(level);
+        }
+        
         if (loadedVerbs.length === 0) {
           console.error(`Aucun verbe trouvé pour le niveau ${level}. Redirection vers l'accueil.`);
           speak(`Aucun verbe n'est disponible pour le niveau ${level}.`);
@@ -74,7 +89,7 @@ const Game = () => {
     };
 
     loadVerbs();
-  }, [level, navigate]);
+  }, [level, practiceVerbName, navigate]);
 
   const generateQuestion = () => {
     if (verbs.length === 0) return;

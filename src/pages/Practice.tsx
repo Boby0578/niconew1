@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ChevronsUpDown } from 'lucide-react';
 import { getAllVerbs } from '@/data/verbLoader';
 import { Verb } from '@/data/verbs';
-import ConjugationTable from '@/components/ConjugationTable';
 
 const Practice = () => {
   const navigate = useNavigate();
@@ -27,6 +26,15 @@ const Practice = () => {
     loadVerbs();
   }, []);
 
+  const startPractice = () => {
+    if (selectedVerb) {
+      const name = localStorage.getItem("conjugaison-username") || 'Joueur';
+      const time = 0; // Unlimited time for practice
+      // We pass the verb name to the game component
+      navigate("/game", { state: { practiceVerbName: selectedVerb.name, time, name, level: 0 } });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center p-4">
       <Card className="w-full max-w-4xl bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg p-8">
@@ -34,7 +42,7 @@ const Practice = () => {
           <h1 className="font-pacifico text-5xl text-purple-600">
             Mode Pratique
           </h1>
-          <p className="text-lg text-gray-600 mt-2">Recherchez un verbe pour voir sa conjugaison complète.</p>
+          <p className="text-lg text-gray-600 mt-2">Choisissez un verbe pour vous entraîner spécifiquement dessus.</p>
         </CardHeader>
         <CardContent className="p-0">
           <div className="flex flex-col items-center gap-6">
@@ -76,7 +84,15 @@ const Practice = () => {
               </PopoverContent>
             </Popover>
 
-            {selectedVerb && <ConjugationTable verb={selectedVerb} />}
+            {selectedVerb && (
+              <Button
+                onClick={startPractice}
+                size="lg"
+                className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold text-xl py-4 px-8 rounded-full shadow-lg"
+              >
+                Pratiquer "{selectedVerb.name}"
+              </Button>
+            )}
 
             <Button
               onClick={() => navigate("/")}
