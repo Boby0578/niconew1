@@ -277,28 +277,21 @@ const Game = () => {
                                 <p className="text-4xl font-bold text-green-700 mt-2">{revealedAnswer}</p>
                             </div>
                         ) : (
-                            <form onSubmit={(e) => { e.preventDefault(); checkAnswer(); }} className="flex items-center justify-center w-full max-w-lg">
-                                <div className="flex-1 flex justify-end">
-                                    {/* Left spacer */}
-                                </div>
-
-                                <div className="px-4 w-full">
+                            level === 4 ? (
+                                <div className="w-full max-w-lg flex flex-col items-center">
                                     {inputMode === 'voice' ? (
                                         <div className="flex flex-col items-center">
-                                            <div
-                                                className="h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-orange-400 hover:bg-orange-500 active:bg-red-600 shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer"
-                                            >
+                                            <div className="h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-orange-400 hover:bg-orange-500 active:bg-red-600 shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer">
                                                 <Mic className="h-24 w-24 sm:h-32 sm:w-32 text-white" />
                                             </div>
-                                            <p className="mt-4 text-xl font-semibold text-gray-600">
-                                                Appuyez pour parler
-                                            </p>
+                                            <p className="mt-4 text-xl font-semibold text-gray-600">Appuyez pour parler</p>
+                                            <Button type="button" variant="outline" size="sm" onClick={() => setInputMode('text')} className="mt-4">
+                                                <Pencil className="mr-2 h-4 w-4" /> Écrire la réponse
+                                            </Button>
                                         </div>
                                     ) : (
-                                        <div className="w-full max-w-lg flex flex-col items-center gap-4">
-                                            <p className="text-xl font-semibold text-gray-600 mb-2">
-                                                Écrivez votre réponse
-                                            </p>
+                                        <form onSubmit={(e) => { e.preventDefault(); checkAnswer(); }} className="w-full max-w-lg flex flex-col items-center gap-4">
+                                            <p className="text-xl font-semibold text-gray-600 mb-2">Écrivez votre réponse</p>
                                             <Input
                                                 type="text"
                                                 placeholder="Votre réponse..."
@@ -308,16 +301,45 @@ const Game = () => {
                                                 autoFocus
                                             />
                                             <Button type="submit" size="lg" className="w-full text-xl px-10 py-6 bg-green-500 hover:bg-green-600">Valider</Button>
-                                        </div>
+                                            <Button type="button" variant="outline" size="sm" onClick={() => setInputMode('voice')} className="mt-2">
+                                                <Mic className="mr-2 h-4 w-4" /> Utiliser la voix
+                                            </Button>
+                                        </form>
                                     )}
                                 </div>
-
-                                <div className="flex-1 flex justify-start">
-                                    <Button type="button" variant="outline" size="icon" onClick={() => setInputMode(prev => prev === 'voice' ? 'text' : 'voice')} className="rounded-full shadow-md">
-                                        {inputMode === 'voice' ? <Pencil className="h-6 w-6" /> : <Mic className="h-6 w-6" />}
-                                    </Button>
-                                </div>
-                            </form>
+                            ) : (
+                                <form onSubmit={(e) => { e.preventDefault(); checkAnswer(); }} className="flex items-center justify-center w-full max-w-lg">
+                                    <div className="flex-1 flex justify-end"></div>
+                                    <div className="px-4 w-full">
+                                        {inputMode === 'voice' ? (
+                                            <div className="flex flex-col items-center">
+                                                <div className="h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-orange-400 hover:bg-orange-500 active:bg-red-600 shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer">
+                                                    <Mic className="h-24 w-24 sm:h-32 sm:w-32 text-white" />
+                                                </div>
+                                                <p className="mt-4 text-xl font-semibold text-gray-600">Appuyez pour parler</p>
+                                            </div>
+                                        ) : (
+                                            <div className="w-full max-w-lg flex flex-col items-center gap-4">
+                                                <p className="text-xl font-semibold text-gray-600 mb-2">Écrivez votre réponse</p>
+                                                <Input
+                                                    type="text"
+                                                    placeholder="Votre réponse..."
+                                                    className="text-center text-2xl h-16 w-full"
+                                                    value={textAnswer}
+                                                    onChange={(e) => setTextAnswer(e.target.value)}
+                                                    autoFocus
+                                                />
+                                                <Button type="submit" size="lg" className="w-full text-xl px-10 py-6 bg-green-500 hover:bg-green-600">Valider</Button>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="flex-1 flex justify-start">
+                                        <Button type="button" variant="outline" size="icon" onClick={() => setInputMode(prev => prev === 'voice' ? 'text' : 'voice')} className="rounded-full shadow-md">
+                                            {inputMode === 'voice' ? <Pencil className="h-6 w-6" /> : <Mic className="h-6 w-6" />}
+                                        </Button>
+                                    </div>
+                                </form>
+                            )
                         )}
                     </div>
 
