@@ -1,127 +1,127 @@
 import { Verb } from '../../verbs';
 
-const déclore: Verb = {
-  name: "déclore",
+const tressaillir: Verb = {
+  name: "tressaillir",
   conjugations: {
-    "indicatif présent": { "je": "déclos", "tu": "déclos", "il/elle": "déclôt" },
-    "indicatif futur simple": { "je": "déclorai", "tu": "décloras", "il/elle": "déclora", "nous": "déclorons", "vous": "déclorez", "ils/elles": "décloront" },
-    "indicatif passé composé": { "j'": "ai déclos", "tu": "as déclos", "il/elle": "a déclos", "nous": "avons déclos", "vous": "avez déclos", "ils/elles": "ont déclos" },
-    "subjonctif présent": { "je": "que je déclose", "tu": "que tu décloses", "il/elle": "qu'il déclose" },
-    "conditionnel présent": { "je": "déclorais", "tu": "déclorais", "il/elle": "déclorait", "nous": "déclorions", "vous": "décloriez", "ils/elles": "décloraient" },
-    "infinitif présent": "déclore",
-    "participe passé": "déclos"
+    "indicatif présent": { "je": "tressaille", "tu": "tressailles", "il/elle": "tressaille", "nous": "tressaillons", "vous": "tressaillez", "ils/elles": "tressaillent" },
+    "indicatif passé simple": { "je": "tressaillis", "tu": "tressaillis", "il/elle": "tressaillit", "nous": "tressaillîmes", "vous": "tressaillîtes", "ils/elles": "tressaillirent" },
+    "indicatif passé composé": { "je": "ai tressailli", "tu": "as tressailli", "il/elle": "a tressailli", "nous": "avons tressailli", "vous": "avez tressailli", "ils/elles": "ont tressailli" },
+    "subjonctif présent": { "je": "que je tressaille", "tu": "que tu tressailles", "il/elle": "qu'il tressaille", "nous": "que nous tressaillions", "vous": "que vous tressailliez", "ils/elles": "qu'ils tressaillent" },
+    "impératif présent": { "tu": "tressaille", "nous": "tressaillons", "vous": "tressaillez" },
+    "participe passé": "tressailli"
   }
 };
 
-const enclore: Verb = {
-  name: "enclore",
+const assaillir: Verb = {
+  name: "assaillir",
   conjugations: {
-    "indicatif présent": { "j'": "enclos", "tu": "enclos", "il/elle": "enclôt", "nous": "enclosons", "vous": "enclosez", "ils/elles": "enclosent" },
-    "indicatif passé simple": { "j'": "enclosis", "tu": "enclosis", "il/elle": "enclosit", "nous": "enclosîmes", "vous": "enclosîtes", "ils/elles": "enclosirent" },
-    "indicatif futur simple": { "j'": "enclorai", "tu": "encloras", "il/elle": "enclora", "nous": "enclorons", "vous": "enclorez", "ils/elles": "encloront" },
-    "indicatif passé composé": { "j'": "ai enclos", "tu": "as enclos", "il/elle": "a enclos", "nous": "avons enclos", "vous": "avez enclos", "ils/elles": "ont enclos" },
-    "subjonctif imparfait": { "je": "que j'enclosisse", "tu": "que tu enclosisses", "il/elle": "qu'il enclosît", "nous": "que nous enclosissions", "vous": "que vous enclosissiez", "ils/elles": "qu'ils enclosissent" },
-    "conditionnel présent": { "j'": "enclorais", "tu": "enclorais", "il/elle": "enclorait", "nous": "enclorions", "vous": "encloriez", "ils/elles": "encloraient" },
-    "infinitif présent": "enclore",
-    "participe passé": "enclos"
+    "indicatif présent": { "j'": "assaille", "tu": "assailles", "il/elle": "assaille", "nous": "assaillons", "vous": "assaillez", "ils/elles": "assaillent" },
+    "indicatif passé simple": { "j'": "assaillis", "tu": "assaillis", "il/elle": "assaillit", "nous": "assaillîmes", "vous": "assaillîtes", "ils/elles": "assaillirent" },
+    "indicatif passé composé": { "j'": "ai assailli", "tu": "as assailli", "il/elle": "a assailli", "nous": "avons assailli", "vous": "avez assailli", "ils/elles": "ont assailli" },
+    "subjonctif présent": { "je": "que j'assaille", "tu": "que tu assailles", "il/elle": "qu'il assaille", "nous": "que nous assaillions", "vous": "que vous assailliez", "ils/elles": "qu'ils assaillent" },
+    "impératif présent": { "tu": "assaille", "nous": "assaillons", "vous": "assaillez" },
+    "participe passé": "assailli"
   }
 };
 
-const forclore: Verb = {
-  name: "forclore",
+const défaillir: Verb = {
+  name: "défaillir",
   conjugations: {
-    "indicatif passé composé": { "j'": "ai forclos", "tu": "as forclos", "il/elle": "a forclos", "nous": "avons forclos", "vous": "avez forclos", "ils/elles": "ont forclos" },
-    "infinitif présent": "forclore",
-    "participe passé": "forclos"
+    "indicatif présent": { "je": "défaus", "tu": "défaus", "il/elle": "défaut", "nous": "défaillons", "vous": "défaillez", "ils/elles": "défaillent" },
+    "indicatif passé simple": { "je": "défaillis", "tu": "défaillis", "il/elle": "défaillit", "nous": "défaillîmes", "vous": "défaillîtes", "ils/elles": "défaillirent" },
+    "indicatif passé composé": { "je": "ai défailli", "tu": "as défailli", "il/elle": "a défailli", "nous": "avons défailli", "vous": "avez défailli", "ils/elles": "ont défailli" },
+    "subjonctif présent": { "je": "que je défaille", "tu": "que tu défailles", "il/elle": "qu'il défaille", "nous": "que nous défaillions", "vous": "que vous défailliez", "ils/elles": "qu'ils défaillent" },
+    "participe passé": "défailli"
   }
 };
 
-const rentraire: Verb = {
-  name: "rentraire",
+const bénir: Verb = {
+  name: "bénir",
   conjugations: {
-    "indicatif passé composé": { "j'": "ai rentrait", "tu": "as rentrait", "il/elle": "a rentrait", "nous": "avons rentrait", "vous": "avez rentrait", "ils/elles": "ont rentrait" },
-    "infinitif présent": "rentraire",
-    "participe passé": "rentrait"
+    "indicatif présent": { "je": "bénis", "tu": "bénis", "il/elle": "bénit", "nous": "bénissons", "vous": "bénissez", "ils/elles": "bénissent" },
+    "indicatif passé simple": { "je": "bénis", "tu": "bénis", "il/elle": "bénit", "nous": "bénîmes", "vous": "bénîtes", "ils/elles": "bénirent" },
+    "indicatif passé composé": { "je": "ai béni", "tu": "as béni", "il/elle": "a béni", "nous": "avons béni", "vous": "avez béni", "ils/elles": "ont béni" },
+    "subjonctif présent": { "je": "que je bénisse", "tu": "que tu bénisses", "il/elle": "qu'il bénisse", "nous": "que nous bénissions", "vous": "que vous bénissiez", "ils/elles": "qu'ils bénissent" },
+    "impératif présent": { "tu": "bénis", "nous": "bénissons", "vous": "bénissez" },
+    "participe passé": "béni"
   }
 };
 
-const décroire: Verb = {
-  name: "décroire",
+const fleurir: Verb = {
+  name: "fleurir",
   conjugations: {
-    "indicatif présent": { "je": "décrois", "tu": "décrois", "il/elle": "décroit" },
-    "infinitif présent": "décroire"
+    "indicatif présent": { "je": "fleuris", "tu": "fleuris", "il/elle": "fleurit", "nous": "fleurissons", "vous": "fleurissez", "ils/elles": "fleurissent" },
+    "indicatif imparfait": { "je": "fleurissais", "tu": "fleurissais", "il/elle": "fleurissait", "nous": "fleurissions", "vous": "fleurissiez", "ils/elles": "fleurissaient" },
+    "indicatif passé composé": { "je": "ai fleuri", "tu": "as fleuri", "il/elle": "a fleuri", "nous": "avons fleuri", "vous": "avez fleuri", "ils/elles": "ont fleuri" },
+    "subjonctif présent": { "je": "que je fleurisse", "tu": "que tu fleurisses", "il/elle": "qu'il fleurisse", "nous": "que nous fleurissions", "vous": "que vous fleurissiez", "ils/elles": "qu'ils fleurissent" },
+    "participe passé": "fleuri"
   }
 };
 
-const ébouillir: Verb = {
-  name: "ébouillir",
+const requérir: Verb = {
+  name: "requérir",
   conjugations: {
-    "indicatif passé simple": { "j'": "ébouillis", "tu": "ébouillis", "il/elle": "ébouillit", "nous": "ébouillîmes", "vous": "ébouillîtes", "ils/elles": "ébouillirent" },
-    "indicatif passé composé": { "j'": "ai ébouilli", "tu": "as ébouilli", "il/elle": "a ébouilli", "nous": "avons ébouilli", "vous": "avez ébouilli", "ils/elles": "ont ébouilli" },
-    "subjonctif imparfait": { "je": "que j'ébouillisse", "tu": "que tu ébouillisses", "il/elle": "qu'il ébouillît", "nous": "que nous ébouillissions", "vous": "que vous ébouillissiez", "ils/elles": "qu'ils ébouillissent" },
-    "infinitif présent": "ébouillir",
-    "participe passé": "ébouilli"
+    "indicatif présent": { "je": "requiers", "tu": "requiers", "il/elle": "requiert", "nous": "requérons", "vous": "requérez", "ils/elles": "requièrent" },
+    "indicatif passé simple": { "je": "requis", "tu": "requis", "il/elle": "requit", "nous": "requîmes", "vous": "requîtes", "ils/elles": "requirent" },
+    "indicatif passé composé": { "je": "ai requis", "tu": "as requis", "il/elle": "a requis", "nous": "avons requis", "vous": "avez requis", "ils/elles": "ont requis" },
+    "subjonctif présent": { "je": "que je requière", "tu": "que tu requières", "il/elle": "qu'il requière", "nous": "que nous requérions", "vous": "que vous requériez", "ils/elles": "qu'ils requièrent" },
+    "participe passé": "requis"
   }
 };
 
-const forfaire: Verb = {
-  name: "forfaire",
+const sEnquérir: Verb = {
+  name: "s'enquérir",
   conjugations: {
-    "indicatif passé simple": { "je": "forfis", "tu": "forfis", "il/elle": "forfit", "nous": "forfîmes", "vous": "forfîtes", "ils/elles": "forfirent" },
-    "indicatif passé composé": { "j'": "ai forfait", "tu": "as forfait", "il/elle": "a forfait", "nous": "avons forfait", "vous": "avez forfait", "ils/elles": "ont forfait" },
-    "subjonctif imparfait": { "je": "que je forfisse", "tu": "que tu forfisses", "il/elle": "qu'il forfît", "nous": "que nous forfissions", "vous": "que vous forfissiez", "ils/elles": "qu'ils forfissent" },
-    "infinitif présent": "forfaire",
-    "participe passé": "forfait"
+    "indicatif présent": { "je": "m'enquiers", "tu": "t'enquiers", "il/elle": "s'enquiert", "nous": "nous enquérons", "vous": "vous enquérez", "ils/elles": "s'enquièrent" },
+    "indicatif passé simple": { "je": "m'enquis", "tu": "t'enquis", "il/elle": "s'enquit", "nous": "nous enquîmes", "vous": "vous enquîtes", "ils/elles": "s'enquirent" },
+    "indicatif passé composé": { "je": "me suis enquis(e)", "tu": "t'es enquis(e)", "il/elle": "s'est enquis(e)", "nous": "nous sommes enquis(es)", "vous": "vous êtes enquis(es)", "ils/elles": "se sont enquis(es)" },
+    "subjonctif présent": { "je": "que je m'enquière", "tu": "que tu t'enquières", "il/elle": "qu'il s'enquière", "nous": "que nous nous enquérions", "vous": "que vous vous enquériez", "ils/elles": "qu'ils s'enquièrent" },
+    "participe passé": "enquis"
   }
 };
 
-const issir: Verb = {
-  name: "issir",
+const dévêtir: Verb = {
+  name: "dévêtir",
   conjugations: {
-    "infinitif présent": "issir",
-    "participe passé": "issu"
+    "indicatif présent": { "je": "dévêts", "tu": "dévêts", "il/elle": "dévêt", "nous": "dévêtons", "vous": "dévêtez", "ils/elles": "dévêtent" },
+    "indicatif passé simple": { "je": "dévêtis", "tu": "dévêtis", "il/elle": "dévêtit", "nous": "dévêtîmes", "vous": "dévêtîtes", "ils/elles": "dévêtirent" },
+    "indicatif passé composé": { "je": "ai dévêtu", "tu": "as dévêtu", "il/elle": "a dévêtu", "nous": "avons dévêtu", "vous": "avez dévêtu", "ils/elles": "ont dévêtu" },
+    "subjonctif présent": { "je": "que je dévête", "tu": "que tu dévêtes", "il/elle": "qu'il dévête", "nous": "que nous dévêtions", "vous": "que vous dévêtiez", "ils/elles": "qu'ils dévêtent" },
+    "participe passé": "dévêtu"
   }
 };
 
-const malfaire: Verb = {
-  name: "malfaire",
+const survêtir: Verb = {
+  name: "survêtir",
   conjugations: {
-    "indicatif présent": { "il/elle": "malfait" },
-    "indicatif imparfait": { "il/elle": "malfaisait" },
-    "indicatif futur simple": { "il/elle": "malfera" },
-    "indicatif passé composé": { "il/elle": "a malfait" },
-    "subjonctif présent": { "il/elle": "qu'il malfasse" },
-    "conditionnel présent": { "il/elle": "malferait" },
-    "infinitif présent": "malfaire",
-    "participe présent": "malfaisant",
-    "participe passé": "malfait"
+    "indicatif présent": { "je": "survêts", "tu": "survêts", "il/elle": "survêt", "nous": "survêtons", "vous": "survêtez", "ils/elles": "survêtent" },
+    "indicatif passé simple": { "je": "survêtis", "tu": "survêtis", "il/elle": "survêtit", "nous": "survêtîmes", "vous": "survêtîtes", "ils/elles": "survêtirent" },
+    "indicatif passé composé": { "je": "ai survêtu", "tu": "as survêtu", "il/elle": "a survêtu", "nous": "avons survêtu", "vous": "avez survêtu", "ils/elles": "ont survêtu" },
+    "subjonctif présent": { "je": "que je survête", "tu": "que tu survêtes", "il/elle": "qu'il survête", "nous": "que nous survêtions", "vous": "que vous survêtiez", "ils/elles": "qu'ils survêtent" },
+    "participe passé": "survêtu"
   }
 };
 
-const méfaire: Verb = {
-  name: "méfaire",
+const démentir: Verb = {
+  name: "démentir",
   conjugations: {
-    "indicatif présent": { "il/elle": "méfait" },
-    "indicatif imparfait": { "il/elle": "méfaisait" },
-    "indicatif futur simple": { "il/elle": "méfera" },
-    "indicatif passé composé": { "il/elle": "a méfait" },
-    "subjonctif présent": { "il/elle": "qu'il méfasse" },
-    "conditionnel présent": { "il/elle": "méferait" },
-    "infinitif présent": "méfaire",
-    "participe présent": "méfaisant",
-    "participe passé": "méfait"
+    "indicatif présent": { "je": "démens", "tu": "démens", "il/elle": "dément", "nous": "démentons", "vous": "démentez", "ils/elles": "démentent" },
+    "indicatif passé simple": { "je": "démentis", "tu": "démentis", "il/elle": "démentit", "nous": "démentîmes", "vous": "démentîtes", "ils/elles": "démentirent" },
+    "indicatif passé composé": { "je": "ai démenti", "tu": "as démenti", "il/elle": "a démenti", "nous": "avons démenti", "vous": "avez démenti", "ils/elles": "ont démenti" },
+    "subjonctif présent": { "je": "que je démente", "tu": "que tu démentes", "il/elle": "qu'il démente", "nous": "que nous démentions", "vous": "que vous démentiez", "ils/elles": "qu'ils démentent" },
+    "participe passé": "démenti"
   }
 };
 
 export default {
-  déclore,
-  enclore,
-  forclore,
-  rentraire,
-  décroire,
-  ébouillir,
-  forfaire,
-  issir,
-  malfaire,
-  méfaire
+  tressaillir,
+  assaillir,
+  défaillir,
+  bénir,
+  fleurir,
+  requérir,
+  sEnquérir,
+  dévêtir,
+  survêtir,
+  démentir
 };
