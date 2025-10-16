@@ -1,0 +1,304 @@
+import { Verb } from '../../verbs';
+
+const bouter: Verb = {
+  name: "bouter",
+  conjugations: {
+    "indicatif présent": { "je": "boute", "tu": "boutes", "il/elle": "boute", "nous": "boutons", "vous": "boutez", "ils/elles": "boutent" },
+    "indicatif imparfait": { "je": "boutais", "tu": "boutais", "il/elle": "boutait", "nous": "boutions", "vous": "boutiez", "ils/elles": "boutaient" },
+    "indicatif passé simple": { "je": "boutai", "tu": "boutas", "il/elle": "bouta", "nous": "boutâmes", "vous": "boutâtes", "ils/elles": "boutèrent" },
+    "indicatif futur simple": { "je": "bouterai", "tu": "bouteras", "il/elle": "boutera", "nous": "bouterons", "vous": "bouterez", "ils/elles": "bouteront" },
+    "indicatif passé composé": { "j'": "ai bouté", "tu": "as bouté", "il/elle": "a bouté", "nous": "avons bouté", "vous": "avez bouté", "ils/elles": "ont bouté" },
+    "indicatif plus-que-parfait": { "j'": "avais bouté", "tu": "avais bouté", "il/elle": "avait bouté", "nous": "avions bouté", "vous": "aviez bouté", "ils/elles": "avaient bouté" },
+    "indicatif passé antérieur": { "j'": "eus bouté", "tu": "eus bouté", "il/elle": "eut bouté", "nous": "eûmes bouté", "vous": "eûtes bouté", "ils/elles": "eurent bouté" },
+    "indicatif futur antérieur": { "j'": "aurai bouté", "tu": "auras bouté", "il/elle": "aura bouté", "nous": "aurons bouté", "vous": "aurez bouté", "ils/elles": "auront bouté" },
+    "subjonctif présent": { "je": "que je boute", "tu": "que tu boutes", "il/elle": "qu'il boute", "nous": "que nous boutions", "vous": "que vous boutiez", "ils/elles": "qu'ils boutent" },
+    "subjonctif imparfait": { "je": "que je boutasse", "tu": "que tu boutasses", "il/elle": "qu'il boutât", "nous": "que nous boutassions", "vous": "que vous boutassiez", "ils/elles": "qu'ils boutassent" },
+    "subjonctif passé": { "je": "que j'aie bouté", "tu": "que tu aies bouté", "il/elle": "qu'il ait bouté", "nous": "que nous ayons bouté", "vous": "que vous ayez bouté", "ils/elles": "qu'ils aient bouté" },
+    "subjonctif plus-que-parfait": { "je": "que j'eusse bouté", "tu": "que tu eusses bouté", "il/elle": "qu'il eût bouté", "nous": "que nous eussions bouté", "vous": "que vous eussiez bouté", "ils/elles": "qu'ils eussent bouté" },
+    "conditionnel présent": { "je": "bouterais", "tu": "bouterais", "il/elle": "bouterait", "nous": "bouterions", "vous": "bouteriez", "ils/elles": "bouteraient" },
+    "conditionnel passé première forme": { "j'": "aurais bouté", "tu": "aurais bouté", "il/elle": "aurait bouté", "nous": "aurions bouté", "vous": "auriez bouté", "ils/elles": "auraient bouté" },
+    "conditionnel passé deuxième forme": { "j'": "eusse bouté", "tu": "eusses bouté", "il/elle": "eût bouté", "nous": "eussions bouté", "vous": "eussiez bouté", "ils/elles": "eussent bouté" },
+    "impératif présent": { "tu": "boute", "nous": "boutons", "vous": "boutez" },
+    "impératif passé": { "tu": "aie bouté", "nous": "ayons bouté", "vous": "ayez bouté" },
+    "infinitif présent": "bouter",
+    "infinitif passé": "avoir bouté",
+    "participe présent": "boutant",
+    "participe passé": "bouté",
+    "gérondif présent": "en boutant",
+    "gérondif passé": "en ayant bouté"
+  }
+};
+
+const tresser: Verb = {
+  name: "tresser",
+  conjugations: {
+    "indicatif présent": { "je": "tresse", "tu": "tresses", "il/elle": "tresse", "nous": "tressons", "vous": "tressez", "ils/elles": "tressent" },
+    "indicatif imparfait": { "je": "tressais", "tu": "tressais", "il/elle": "tressait", "nous": "tressions", "vous": "tressiez", "ils/elles": "tressaient" },
+    "indicatif passé simple": { "je": "tressai", "tu": "tressas", "il/elle": "tressa", "nous": "tressâmes", "vous": "tressâtes", "ils/elles": "tressèrent" },
+    "indicatif futur simple": { "je": "tresserai", "tu": "tresseras", "il/elle": "tressera", "nous": "tresserons", "vous": "tresserez", "ils/elles": "tresseront" },
+    "indicatif passé composé": { "j'": "ai tressé", "tu": "as tressé", "il/elle": "a tressé", "nous": "avons tressé", "vous": "avez tressé", "ils/elles": "ont tressé" },
+    "indicatif plus-que-parfait": { "j'": "avais tressé", "tu": "avais tressé", "il/elle": "avait tressé", "nous": "avions tressé", "vous": "aviez tressé", "ils/elles": "avaient tressé" },
+    "indicatif passé antérieur": { "j'": "eus tressé", "tu": "eus tressé", "il/elle": "eut tressé", "nous": "eûmes tressé", "vous": "eûtes tressé", "ils/elles": "eurent tressé" },
+    "indicatif futur antérieur": { "j'": "aurai tressé", "tu": "auras tressé", "il/elle": "aura tressé", "nous": "aurons tressé", "vous": "aurez tressé", "ils/elles": "auront tressé" },
+    "subjonctif présent": { "je": "que je tresse", "tu": "que tu tresses", "il/elle": "qu'il tresse", "nous": "que nous tressions", "vous": "que vous tressiez", "ils/elles": "qu'ils tressent" },
+    "subjonctif imparfait": { "je": "que je tressasse", "tu": "que tu tressasses", "il/elle": "qu'il tressât", "nous": "que nous tressassions", "vous": "que vous tressassiez", "ils/elles": "qu'ils tressassent" },
+    "subjonctif passé": { "je": "que j'aie tressé", "tu": "que tu aies tressé", "il/elle": "qu'il ait tressé", "nous": "que nous ayons tressé", "vous": "que vous ayez tressé", "ils/elles": "qu'ils aient tressé" },
+    "subjonctif plus-que-parfait": { "je": "que j'eusse tressé", "tu": "que tu eusses tressé", "il/elle": "qu'il eût tressé", "nous": "que nous eussions tressé", "vous": "que vous eussiez tressé", "ils/elles": "qu'ils eussent tressé" },
+    "conditionnel présent": { "je": "tresserais", "tu": "tresserais", "il/elle": "tresserait", "nous": "tresserions", "vous": "tresseriez", "ils/elles": "tresseraient" },
+    "conditionnel passé première forme": { "j'": "aurais tressé", "tu": "aurais tressé", "il/elle": "aurait tressé", "nous": "aurions tressé", "vous": "auriez tressé", "ils/elles": "auraient tressé" },
+    "conditionnel passé deuxième forme": { "j'": "eusse tressé", "tu": "eusses tressé", "il/elle": "eût tressé", "nous": "eussions tressé", "vous": "eussiez tressé", "ils/elles": "eussent tressé" },
+    "impératif présent": { "tu": "tresse", "nous": "tressons", "vous": "tressez" },
+    "impératif passé": { "tu": "aie tressé", "nous": "ayons tressé", "vous": "ayez tressé" },
+    "infinitif présent": "tresser",
+    "infinitif passé": "avoir tressé",
+    "participe présent": "tressant",
+    "participe passé": "tressé",
+    "gérondif présent": "en tressant",
+    "gérondif passé": "en ayant tressé"
+  }
+};
+
+const forger: Verb = {
+  name: "forger",
+  conjugations: {
+    "indicatif présent": { "je": "forge", "tu": "forges", "il/elle": "forge", "nous": "forgeons", "vous": "forgez", "ils/elles": "forgent" },
+    "indicatif imparfait": { "je": "forgeais", "tu": "forgeais", "il/elle": "forgeait", "nous": "forgions", "vous": "forgiez", "ils/elles": "forgeaient" },
+    "indicatif passé simple": { "je": "forgeai", "tu": "forgeas", "il/elle": "forgea", "nous": "forgeâmes", "vous": "forgeâtes", "ils/elles": "forgèrent" },
+    "indicatif futur simple": { "je": "forgerai", "tu": "forgeras", "il/elle": "forgera", "nous": "forgerons", "vous": "forgerez", "ils/elles": "forgeront" },
+    "indicatif passé composé": { "j'": "ai forgé", "tu": "as forgé", "il/elle": "a forgé", "nous": "avons forgé", "vous": "avez forgé", "ils/elles": "ont forgé" },
+    "indicatif plus-que-parfait": { "j'": "avais forgé", "tu": "avais forgé", "il/elle": "avait forgé", "nous": "avions forgé", "vous": "aviez forgé", "ils/elles": "avaient forgé" },
+    "indicatif passé antérieur": { "j'": "eus forgé", "tu": "eus forgé", "il/elle": "eut forgé", "nous": "eûmes forgé", "vous": "eûtes forgé", "ils/elles": "eurent forgé" },
+    "indicatif futur antérieur": { "j'": "aurai forgé", "tu": "auras forgé", "il/elle": "aura forgé", "nous": "aurons forgé", "vous": "aurez forgé", "ils/elles": "auront forgé" },
+    "subjonctif présent": { "je": "que je forge", "tu": "que tu forges", "il/elle": "qu'il forge", "nous": "que nous forgions", "vous": "que vous forgiez", "ils/elles": "qu'ils forgent" },
+    "subjonctif imparfait": { "je": "que je forgeasse", "tu": "que tu forgeasses", "il/elle": "qu'il forgeât", "nous": "que nous forgeassions", "vous": "que vous forgeassiez", "ils/elles": "qu'ils forgeassent" },
+    "subjonctif passé": { "je": "que j'aie forgé", "tu": "que tu aies forgé", "il/elle": "qu'il ait forgé", "nous": "que nous ayons forgé", "vous": "que vous ayez forgé", "ils/elles": "qu'ils aient forgé" },
+    "subjonctif plus-que-parfait": { "je": "que j'eusse forgé", "tu": "que tu eusses forgé", "il/elle": "qu'il eût forgé", "nous": "que nous eussions forgé", "vous": "que vous eussiez forgé", "ils/elles": "qu'ils eussent forgé" },
+    "conditionnel présent": { "je": "forgerais", "tu": "forgerais", "il/elle": "forgerait", "nous": "forgerions", "vous": "forgeriez", "ils/elles": "forgeraient" },
+    "conditionnel passé première forme": { "j'": "aurais forgé", "tu": "aurais forgé", "il/elle": "aurait forgé", "nous": "aurions forgé", "vous": "auriez forgé", "ils/elles": "auraient forgé" },
+    "conditionnel passé deuxième forme": { "j'": "eusse forgé", "tu": "eusses forgé", "il/elle": "eût forgé", "nous": "eussions forgé", "vous": "eussiez forgé", "ils/elles": "eussent forgé" },
+    "impératif présent": { "tu": "forge", "nous": "forgeons", "vous": "forgez" },
+    "impératif passé": { "tu": "aie forgé", "nous": "ayons forgé", "vous": "ayez forgé" },
+    "infinitif présent": "forger",
+    "infinitif passé": "avoir forgé",
+    "participe présent": "forgeant",
+    "participe passé": "forgé",
+    "gérondif présent": "en forgeant",
+    "gérondif passé": "en ayant forgé"
+  }
+};
+
+const ciseler: Verb = {
+  name: "ciseler",
+  conjugations: {
+    "indicatif présent": { "je": "cisèle", "tu": "cisèles", "il/elle": "cisèle", "nous": "ciselons", "vous": "ciselez", "ils/elles": "cisèlent" },
+    "indicatif imparfait": { "je": "ciselais", "tu": "ciselais", "il/elle": "ciselait", "nous": "ciselions", "vous": "ciseliez", "ils/elles": "ciselaient" },
+    "indicatif passé simple": { "je": "ciselai", "tu": "ciselas", "il/elle": "cisela", "nous": "ciselâmes", "vous": "ciselâtes", "ils/elles": "ciselèrent" },
+    "indicatif futur simple": { "je": "cisèlerai", "tu": "cisèleras", "il/elle": "cisèlera", "nous": "cisèlerons", "vous": "cisèlerez", "ils/elles": "cisèleront" },
+    "indicatif passé composé": { "j'": "ai ciselé", "tu": "as ciselé", "il/elle": "a ciselé", "nous": "avons ciselé", "vous": "avez ciselé", "ils/elles": "ont ciselé" },
+    "indicatif plus-que-parfait": { "j'": "avais ciselé", "tu": "avais ciselé", "il/elle": "avait ciselé", "nous": "avions ciselé", "vous": "aviez ciselé", "ils/elles": "avaient ciselé" },
+    "indicatif passé antérieur": { "j'": "eus ciselé", "tu": "eus ciselé", "il/elle": "eut ciselé", "nous": "eûmes ciselé", "vous": "eûtes ciselé", "ils/elles": "eurent ciselé" },
+    "indicatif futur antérieur": { "j'": "aurai ciselé", "tu": "auras ciselé", "il/elle": "aura ciselé", "nous": "aurons ciselé", "vous": "aurez ciselé", "ils/elles": "auront ciselé" },
+    "subjonctif présent": { "je": "que je cisèle", "tu": "que tu cisèles", "il/elle": "qu'il cisèle", "nous": "que nous ciselions", "vous": "que vous ciseliez", "ils/elles": "qu'ils cisèlent" },
+    "subjonctif imparfait": { "je": "que je ciselasse", "tu": "que tu ciselasses", "il/elle": "qu'il ciselât", "nous": "que nous ciselassions", "vous": "que vous ciselassiez", "ils/elles": "qu'ils ciselassent" },
+    "subjonctif passé": { "je": "que j'aie ciselé", "tu": "que tu aies ciselé", "il/elle": "qu'il ait ciselé", "nous": "que nous ayons ciselé", "vous": "que vous ayez ciselé", "ils/elles": "qu'ils aient ciselé" },
+    "subjonctif plus-que-parfait": { "je": "que j'eusse ciselé", "tu": "que tu eusses ciselé", "il/elle": "qu'il eût ciselé", "nous": "que nous eussions ciselé", "vous": "que vous eussiez ciselé", "ils/elles": "qu'ils eussent ciselé" },
+    "conditionnel présent": { "je": "cisèlerais", "tu": "cisèlerais", "il/elle": "cisèlerait", "nous": "cisèlerions", "vous": "cisèleriez", "ils/elles": "cisèleraient" },
+    "conditionnel passé première forme": { "j'": "aurais ciselé", "tu": "aurais ciselé", "il/elle": "aurait ciselé", "nous": "aurions ciselé", "vous": "auriez ciselé", "ils/elles": "auraient ciselé" },
+    "conditionnel passé deuxième forme": { "j'": "eusse ciselé", "tu": "eusses ciselé", "il/elle": "eût ciselé", "nous": "eussions ciselé", "vous": "eussiez ciselé", "ils/elles": "eussent ciselé" },
+    "impératif présent": { "tu": "cisèle", "nous": "ciselons", "vous": "ciselez" },
+    "impératif passé": { "tu": "aie ciselé", "nous": "ayons ciselé", "vous": "ayez ciselé" },
+    "infinitif présent": "ciseler",
+    "infinitif passé": "avoir ciselé",
+    "participe présent": "ciselant",
+    "participe passé": "ciselé",
+    "gérondif présent": "en ciselant",
+    "gérondif passé": "en ayant ciselé"
+  }
+};
+
+const vanner: Verb = {
+  name: "vanner",
+  conjugations: {
+    "indicatif présent": { "je": "vanne", "tu": "vannes", "il/elle": "vanne", "nous": "vannons", "vous": "vannez", "ils/elles": "vannent" },
+    "indicatif imparfait": { "je": "vannais", "tu": "vannais", "il/elle": "vannait", "nous": "vannions", "vous": "vanniez", "ils/elles": "vannaient" },
+    "indicatif passé simple": { "je": "vannai", "tu": "vannas", "il/elle": "vanna", "nous": "vannâmes", "vous": "vannâtes", "ils/elles": "vannèrent" },
+    "indicatif futur simple": { "je": "vannerai", "tu": "vanneras", "il/elle": "vannera", "nous": "vannerons", "vous": "vannerez", "ils/elles": "vanneront" },
+    "indicatif passé composé": { "j'": "ai vanné", "tu": "as vanné", "il/elle": "a vanné", "nous": "avons vanné", "vous": "avez vanné", "ils/elles": "ont vanné" },
+    "indicatif plus-que-parfait": { "j'": "avais vanné", "tu": "avais vanné", "il/elle": "avait vanné", "nous": "avions vanné", "vous": "aviez vanné", "ils/elles": "avaient vanné" },
+    "indicatif passé antérieur": { "j'": "eus vanné", "tu": "eus vanné", "il/elle": "eut vanné", "nous": "eûmes vanné", "vous": "eûtes vanné", "ils/elles": "eurent vanné" },
+    "indicatif futur antérieur": { "j'": "aurai vanné", "tu": "auras vanné", "il/elle": "aura vanné", "nous": "aurons vanné", "vous": "aurez vanné", "ils/elles": "auront vanné" },
+    "subjonctif présent": { "je": "que je vanne", "tu": "que tu vannes", "il/elle": "qu'il vanne", "nous": "que nous vannions", "vous": "que vous vanniez", "ils/elles": "qu'ils vannent" },
+    "subjonctif imparfait": { "je": "que je vannasse", "tu": "que tu vannasses", "il/elle": "qu'il vannât", "nous": "que nous vannassions", "vous": "que vous vannassiez", "ils/elles": "qu'ils vannassent" },
+    "subjonctif passé": { "je": "que j'aie vanné", "tu": "que tu aies vanné", "il/elle": "qu'il ait vanné", "nous": "que nous ayons vanné", "vous": "que vous ayez vanné", "ils/elles": "qu'ils aient vanné" },
+    "subjonctif plus-que-parfait": { "je": "que j'eusse vanné", "tu": "que tu eusses vanné", "il/elle": "qu'il eût vanné", "nous": "que nous eussions vanné", "vous": "que vous eussiez vanné", "ils/elles": "qu'ils eussent vanné" },
+    "conditionnel présent": { "je": "vannerais", "tu": "vannerais", "il/elle": "vannerait", "nous": "vannerions", "vous": "vanneriez", "ils/elles": "vanneraient" },
+    "conditionnel passé première forme": { "j'": "aurais vanné", "tu": "aurais vanné", "il/elle": "aurait vanné", "nous": "aurions vanné", "vous": "auriez vanné", "ils/elles": "auraient vanné" },
+    "conditionnel passé deuxième forme": { "j'": "eusse vanné", "tu": "eusses vanné", "il/elle": "eût vanné", "nous": "eussions vanné", "vous": "eussiez vanné", "ils/elles": "eussent vanné" },
+    "impératif présent": { "tu": "vanne", "nous": "vannons", "vous": "vannez" },
+    "impératif passé": { "tu": "aie vanné", "nous": "ayons vanné", "vous": "ayez vanné" },
+    "infinitif présent": "vanner",
+    "infinitif passé": "avoir vanné",
+    "participe présent": "vannant",
+    "participe passé": "vanné",
+    "gérondif présent": "en vannant",
+    "gérondif passé": "en ayant vanné"
+  }
+};
+
+const tondre: Verb = {
+  name: "tondre",
+  conjugations: {
+    "indicatif présent": { "je": "tonds", "tu": "tonds", "il/elle": "tond", "nous": "tondons", "vous": "tondez", "ils/elles": "tondent" },
+    "indicatif imparfait": { "je": "tondais", "tu": "tondais", "il/elle": "tondait", "nous": "tondions", "vous": "tondiez", "ils/elles": "tondaient" },
+    "indicatif passé simple": { "je": "tondis", "tu": "tondis", "il/elle": "tondit", "nous": "tondîmes", "vous": "tondîtes", "ils/elles": "tondirent" },
+    "indicatif futur simple": { "je": "tondrai", "tu": "tondras", "il/elle": "tondra", "nous": "tondrons", "vous": "tondrez", "ils/elles": "tondront" },
+    "indicatif passé composé": { "j'": "ai tondu", "tu": "as tondu", "il/elle": "a tondu", "nous": "avons tondu", "vous": "avez tondu", "ils/elles": "ont tondu" },
+    "indicatif plus-que-parfait": { "j'": "avais tondu", "tu": "avais tondu", "il/elle": "avait tondu", "nous": "avions tondu", "vous": "aviez tondu", "ils/elles": "avaient tondu" },
+    "indicatif passé antérieur": { "j'": "eus tondu", "tu": "eus tondu", "il/elle": "eut tondu", "nous": "eûmes tondu", "vous": "eûtes tondu", "ils/elles": "eurent tondu" },
+    "indicatif futur antérieur": { "j'": "aurai tondu", "tu": "auras tondu", "il/elle": "aura tondu", "nous": "aurons tondu", "vous": "aurez tondu", "ils/elles": "auront tondu" },
+    "subjonctif présent": { "je": "que je tonde", "tu": "que tu tondes", "il/elle": "qu'il tonde", "nous": "que nous tondions", "vous": "que vous tondiez", "ils/elles": "qu'ils tondent" },
+    "subjonctif imparfait": { "je": "que je tondisse", "tu": "que tu tondisses", "il/elle": "qu'il tondît", "nous": "que nous tondissions", "vous": "que vous tondissiez", "ils/elles": "qu'ils tondissent" },
+    "subjonctif passé": { "je": "que j'aie tondu", "tu": "que tu aies tondu", "il/elle": "qu'il ait tondu", "nous": "que nous ayons tondu", "vous": "que vous ayez tondu", "ils/elles": "qu'ils aient tondu" },
+    "subjonctif plus-que-parfait": { "je": "que j'eusse tondu", "tu": "que tu eusses tondu", "il/elle": "qu'il eût tondu", "nous": "que nous eussions tondu", "vous": "que vous eussiez tondu", "ils/elles": "qu'ils eussent tondu" },
+    "conditionnel présent": { "je": "tondrais", "tu": "tondrais", "il/elle": "tondrait", "nous": "tondrions", "vous": "tondriez", "ils/elles": "tondraient" },
+    "conditionnel passé première forme": { "j'": "aurais tondu", "tu": "aurais tondu", "il/elle": "aurait tondu", "nous": "aurions tondu", "vous": "auriez tondu", "ils/elles": "auraient tondu" },
+    "conditionnel passé deuxième forme": { "j'": "eusse tondu", "tu": "eusses tondu", "il/elle": "eût tondu", "nous": "eussions tondu", "vous": "eussiez tondu", "ils/elles": "eussent tondu" },
+    "impératif présent": { "tu": "tonds", "nous": "tondons", "vous": "tondez" },
+    "impératif passé": { "tu": "aie tondu", "nous": "ayons tondu", "vous": "ayez tondu" },
+    "infinitif présent": "tondre",
+    "infinitif passé": "avoir tondu",
+    "participe présent": "tondant",
+    "participe passé": "tondu",
+    "gérondif présent": "en tondant",
+    "gérondif passé": "en ayant tondu"
+  }
+};
+
+const subodorer: Verb = {
+  name: "subodorer",
+  conjugations: {
+    "indicatif présent": { "je": "subodore", "tu": "subodores", "il/elle": "subodore", "nous": "subodorons", "vous": "subodorez", "ils/elles": "subodorent" },
+    "indicatif imparfait": { "je": "subodorais", "tu": "subodorais", "il/elle": "subodorait", "nous": "subodorions", "vous": "subodoriez", "ils/elles": "subodoraient" },
+    "indicatif passé simple": { "je": "subodorai", "tu": "subodoras", "il/elle": "subodora", "nous": "subodorâmes", "vous": "subodorâtes", "ils/elles": "subodorèrent" },
+    "indicatif futur simple": { "je": "subodorerai", "tu": "subodoreras", "il/elle": "subodorera", "nous": "subodorerons", "vous": "subodorerez", "ils/elles": "subodoreront" },
+    "indicatif passé composé": { "j'": "ai subodoré", "tu": "as subodoré", "il/elle": "a subodoré", "nous": "avons subodoré", "vous": "avez subodoré", "ils/elles": "ont subodoré" },
+    "indicatif plus-que-parfait": { "j'": "avais subodoré", "tu": "avais subodoré", "il/elle": "avait subodoré", "nous": "avions subodoré", "vous": "aviez subodoré", "ils/elles": "avaient subodoré" },
+    "indicatif passé antérieur": { "j'": "eus subodoré", "tu": "eus subodoré", "il/elle": "eut subodoré", "nous": "eûmes subodoré", "vous": "eûtes subodoré", "ils/elles": "eurent subodoré" },
+    "indicatif futur antérieur": { "j'": "aurai subodoré", "tu": "auras subodoré", "il/elle": "aura subodoré", "nous": "aurons subodoré", "vous": "aurez subodoré", "ils/elles": "auront subodoré" },
+    "subjonctif présent": { "je": "que je subodore", "tu": "que tu subodores", "il/elle": "qu'il subodore", "nous": "que nous subodorions", "vous": "que vous subodoriez", "ils/elles": "qu'ils subodorent" },
+    "subjonctif imparfait": { "je": "que je subodorasse", "tu": "que tu subodorasses", "il/elle": "qu'il subodorât", "nous": "que nous subodorassions", "vous": "que vous subodorassiez", "ils/elles": "qu'ils subodorassent" },
+    "subjonctif passé": { "je": "que j'aie subodoré", "tu": "que tu aies subodoré", "il/elle": "qu'il ait subodoré", "nous": "que nous ayons subodoré", "vous": "que vous ayez subodoré", "ils/elles": "qu'ils aient subodoré" },
+    "subjonctif plus-que-parfait": { "je": "que j'eusse subodoré", "tu": "que tu eusses subodoré", "il/elle": "qu'il eût subodoré", "nous": "que nous eussions subodoré", "vous": "que vous eussiez subodoré", "ils/elles": "qu'ils eussent subodoré" },
+    "conditionnel présent": { "je": "subodorerais", "tu": "subodorerais", "il/elle": "subodorerait", "nous": "subodorerions", "vous": "subodoreriez", "ils/elles": "subodoreraient" },
+    "conditionnel passé première forme": { "j'": "aurais subodoré", "tu": "aurais subodoré", "il/elle": "aurait subodoré", "nous": "aurions subodoré", "vous": "auriez subodoré", "ils/elles": "auraient subodoré" },
+    "conditionnel passé deuxième forme": { "j'": "eusse subodoré", "tu": "eusses subodoré", "il/elle": "eût subodoré", "nous": "eussions subodoré", "vous": "eussiez subodoré", "ils/elles": "eussent subodoré" },
+    "impératif présent": { "tu": "subodore", "nous": "subodorons", "vous": "subodorez" },
+    "impératif passé": { "tu": "aie subodoré", "nous": "ayons subodoré", "vous": "ayez subodoré" },
+    "infinitif présent": "subodorer",
+    "infinitif passé": "avoir subodoré",
+    "participe présent": "subodorant",
+    "participe passé": "subodoré",
+    "gérondif présent": "en subodorant",
+    "gérondif passé": "en ayant subodoré"
+  }
+};
+
+const corroborer: Verb = {
+  name: "corroborer",
+  conjugations: {
+    "indicatif présent": { "je": "corrobore", "tu": "corrobores", "il/elle": "corrobore", "nous": "corroborons", "vous": "corroborez", "ils/elles": "corroborent" },
+    "indicatif imparfait": { "je": "corroborais", "tu": "corroborais", "il/elle": "corroborait", "nous": "corroborions", "vous": "corroboriez", "ils/elles": "corroboraient" },
+    "indicatif passé simple": { "je": "corroborai", "tu": "corroboras", "il/elle": "corrobora", "nous": "corroborâmes", "vous": "corroborâtes", "ils/elles": "corroborèrent" },
+    "indicatif futur simple": { "je": "corroborerai", "tu": "corroboreras", "il/elle": "corroborera", "nous": "corroborerons", "vous": "corroborerez", "ils/elles": "corroboreront" },
+    "indicatif passé composé": { "j'": "ai corroboré", "tu": "as corroboré", "il/elle": "a corroboré", "nous": "avons corroboré", "vous": "avez corroboré", "ils/elles": "ont corroboré" },
+    "indicatif plus-que-parfait": { "j'": "avais corroboré", "tu": "avais corroboré", "il/elle": "avait corroboré", "nous": "avions corroboré", "vous": "aviez corroboré", "ils/elles": "avaient corroboré" },
+    "indicatif passé antérieur": { "j'": "eus corroboré", "tu": "eus corroboré", "il/elle": "eut corroboré", "nous": "eûmes corroboré", "vous": "eûtes corroboré", "ils/elles": "eurent corroboré" },
+    "indicatif futur antérieur": { "j'": "aurai corroboré", "tu": "auras corroboré", "il/elle": "aura corroboré", "nous": "aurons corroboré", "vous": "aurez corroboré", "ils/elles": "auront corroboré" },
+    "subjonctif présent": { "je": "que je corrobore", "tu": "que tu corrobores", "il/elle": "qu'il corrobore", "nous": "que nous corroborions", "vous": "que vous corroboriez", "ils/elles": "qu'ils corroborent" },
+    "subjonctif imparfait": { "je": "que je corroborasse", "tu": "que tu corroborasses", "il/elle": "qu'il corroborât", "nous": "que nous corroborassions", "vous": "que vous corroborassiez", "ils/elles": "qu'ils corroborassent" },
+    "subjonctif passé": { "je": "que j'aie corroboré", "tu": "que tu aies corroboré", "il/elle": "qu'il ait corroboré", "nous": "que nous ayons corroboré", "vous": "que vous ayez corroboré", "ils/elles": "qu'ils aient corroboré" },
+    "subjonctif plus-que-parfait": { "je": "que j'eusse corroboré", "tu": "que tu eusses corroboré", "il/elle": "qu'il eût corroboré", "nous": "que nous eussions corroboré", "vous": "que vous eussiez corroboré", "ils/elles": "qu'ils eussent corroboré" },
+    "conditionnel présent": { "je": "corroborerais", "tu": "corroborerais", "il/elle": "corroborerait", "nous": "corroborerions", "vous": "corroboreriez", "ils/elles": "corroboreraient" },
+    "conditionnel passé première forme": { "j'": "aurais corroboré", "tu": "aurais corroboré", "il/elle": "aurait corroboré", "nous": "aurions corroboré", "vous": "auriez corroboré", "ils/elles": "auraient corroboré" },
+    "conditionnel passé deuxième forme": { "j'": "eusse corroboré", "tu": "eusses corroboré", "il/elle": "eût corroboré", "nous": "eussions corroboré", "vous": "eussiez corroboré", "ils/elles": "eussent corroboré" },
+    "impératif présent": { "tu": "corrobore", "nous": "corroborons", "vous": "corroborez" },
+    "impératif passé": { "tu": "aie corroboré", "nous": "ayons corroboré", "vous": "ayez corroboré" },
+    "infinitif présent": "corroborer",
+    "infinitif passé": "avoir corroboré",
+    "participe présent": "corroborant",
+    "participe passé": "corroboré",
+    "gérondif présent": "en corroborant",
+    "gérondif passé": "en ayant corroboré"
+  }
+};
+
+const ablater: Verb = {
+  name: "ablater",
+  conjugations: {
+    "indicatif présent": { "j'": "ablate", "tu": "ablates", "il/elle": "ablate", "nous": "ablatons", "vous": "ablatez", "ils/elles": "ablatent" },
+    "indicatif imparfait": { "j'": "ablatais", "tu": "ablatais", "il/elle": "ablatait", "nous": "ablations", "vous": "ablatiez", "ils/elles": "ablataient" },
+    "indicatif passé simple": { "j'": "ablatai", "tu": "ablatas", "il/elle": "ablata", "nous": "ablatâmes", "vous": "ablatâtes", "ils/elles": "ablatèrent" },
+    "indicatif futur simple": { "j'": "ablaterai", "tu": "ablateras", "il/elle": "ablatera", "nous": "ablaterons", "vous": "ablaterez", "ils/elles": "ablateront" },
+    "indicatif passé composé": { "j'": "ai ablaté", "tu": "as ablaté", "il/elle": "a ablaté", "nous": "avons ablaté", "vous": "avez ablaté", "ils/elles": "ont ablaté" },
+    "indicatif plus-que-parfait": { "j'": "avais ablaté", "tu": "avais ablaté", "il/elle": "avait ablaté", "nous": "avions ablaté", "vous": "aviez ablaté", "ils/elles": "avaient ablaté" },
+    "indicatif passé antérieur": { "j'": "eus ablaté", "tu": "eus ablaté", "il/elle": "eut ablaté", "nous": "eûmes ablaté", "vous": "eûtes ablaté", "ils/elles": "eurent ablaté" },
+    "indicatif futur antérieur": { "j'": "aurai ablaté", "tu": "auras ablaté", "il/elle": "aura ablaté", "nous": "aurons ablaté", "vous": "aurez ablaté", "ils/elles": "auront ablaté" },
+    "subjonctif présent": { "je": "que j'ablate", "tu": "que tu ablates", "il/elle": "qu'il ablate", "nous": "que nous ablations", "vous": "que vous ablatiez", "ils/elles": "qu'ils ablatent" },
+    "subjonctif imparfait": { "je": "que j'ablatasse", "tu": "que tu ablatasses", "il/elle": "qu'il ablatât", "nous": "que nous ablatassions", "vous": "que vous ablatassiez", "ils/elles": "qu'ils ablatassent" },
+    "subjonctif passé": { "je": "que j'aie ablaté", "tu": "que tu aies ablaté", "il/elle": "qu'il ait ablaté", "nous": "que nous ayons ablaté", "vous": "que vous ayez ablaté", "ils/elles": "qu'ils aient ablaté" },
+    "subjonctif plus-que-parfait": { "je": "que j'eusse ablaté", "tu": "que tu eusses ablaté", "il/elle": "qu'il eût ablaté", "nous": "que nous eussions ablaté", "vous": "que vous eussiez ablaté", "ils/elles": "qu'ils eussent ablaté" },
+    "conditionnel présent": { "j'": "ablaterais", "tu": "ablaterais", "il/elle": "ablaterait", "nous": "ablaterions", "vous": "ablateriez", "ils/elles": "ablateraient" },
+    "conditionnel passé première forme": { "j'": "aurais ablaté", "tu": "aurais ablaté", "il/elle": "aurait ablaté", "nous": "aurions ablaté", "vous": "auriez ablaté", "ils/elles": "auraient ablaté" },
+    "conditionnel passé deuxième forme": { "j'": "eusse ablaté", "tu": "eusses ablaté", "il/elle": "eût ablaté", "nous": "eussions ablaté", "vous": "eussiez ablaté", "ils/elles": "eussent ablaté" },
+    "impératif présent": { "tu": "ablate", "nous": "ablatons", "vous": "ablatez" },
+    "impératif passé": { "tu": "aie ablaté", "nous": "ayons ablaté", "vous": "ayez ablaté" },
+    "infinitif présent": "ablater",
+    "infinitif passé": "avoir ablaté",
+    "participe présent": "ablatant",
+    "participe passé": "ablaté",
+    "gérondif présent": "en ablatant",
+    "gérondif passé": "en ayant ablaté"
+  }
+};
+
+const démentir: Verb = {
+  name: "démentir",
+  conjugations: {
+    "indicatif présent": { "je": "démens", "tu": "démens", "il/elle": "dément", "nous": "démentons", "vous": "démentez", "ils/elles": "démentent" },
+    "indicatif imparfait": { "je": "démentais", "tu": "démentais", "il/elle": "démentait", "nous": "démentions", "vous": "démentiez", "ils/elles": "démentaient" },
+    "indicatif passé simple": { "je": "démentis", "tu": "démentis", "il/elle": "démentit", "nous": "démentîmes", "vous": "démentîtes", "ils/elles": "démentirent" },
+    "indicatif futur simple": { "je": "démentirai", "tu": "démentiras", "il/elle": "démentira", "nous": "démentirons", "vous": "démentirez", "ils/elles": "démentiront" },
+    "indicatif passé composé": { "j'": "ai démenti", "tu": "as démenti", "il/elle": "a démenti", "nous": "avons démenti", "vous": "avez démenti", "ils/elles": "ont démenti" },
+    "indicatif plus-que-parfait": { "j'": "avais démenti", "tu": "avais démenti", "il/elle": "avait démenti", "nous": "avions démenti", "vous": "aviez démenti", "ils/elles": "avaient démenti" },
+    "indicatif passé antérieur": { "j'": "eus démenti", "tu": "eus démenti", "il/elle": "eut démenti", "nous": "eûmes démenti", "vous": "eûtes démenti", "ils/elles": "eurent démenti" },
+    "indicatif futur antérieur": { "j'": "aurai démenti", "tu": "auras démenti", "il/elle": "aura démenti", "nous": "aurons démenti", "vous": "aurez démenti", "ils/elles": "auront démenti" },
+    "subjonctif présent": { "je": "que je démente", "tu": "que tu démentes", "il/elle": "qu'il démente", "nous": "que nous démentions", "vous": "que vous démentiez", "ils/elles": "qu'ils démentent" },
+    "subjonctif imparfait": { "je": "que je démentisse", "tu": "que tu démentisses", "il/elle": "qu'il démentît", "nous": "que nous démentissions", "vous": "que vous démentissiez", "ils/elles": "qu'ils démentissent" },
+    "subjonctif passé": { "je": "que j'aie démenti", "tu": "que tu aies démenti", "il/elle": "qu'il ait démenti", "nous": "que nous ayons démenti", "vous": "que vous ayez démenti", "ils/elles": "qu'ils aient démenti" },
+    "subjonctif plus-que-parfait": { "je": "que j'eusse démenti", "tu": "que tu eusses démenti", "il/elle": "qu'il eût démenti", "nous": "que nous eussions démenti", "vous": "que vous eussiez démenti", "ils/elles": "qu'ils eussent démenti" },
+    "conditionnel présent": { "je": "démentirais", "tu": "démentirais", "il/elle": "démentirait", "nous": "démentirions", "vous": "démentiriez", "ils/elles": "démentiraient" },
+    "conditionnel passé première forme": { "j'": "aurais démenti", "tu": "aurais démenti", "il/elle": "aurait démenti", "nous": "aurions démenti", "vous": "auriez démenti", "ils/elles": "auraient démenti" },
+    "conditionnel passé deuxième forme": { "j'": "eusse démenti", "tu": "eusses démenti", "il/elle": "eût démenti", "nous": "eussions démenti", "vous": "eussiez démenti", "ils/elles": "eussent démenti" },
+    "impératif présent": { "tu": "démens", "nous": "démentons", "vous": "démentez" },
+    "impératif passé": { "tu": "aie démenti", "nous": "ayons démenti", "vous": "ayez démenti" },
+    "infinitif présent": "démentir",
+    "infinitif passé": "avoir démenti",
+    "participe présent": "démentant",
+    "participe passé": "démenti",
+    "gérondif présent": "en démentant",
+    "gérondif passé": "en ayant démenti"
+  }
+};
+
+export default {
+  bouter,
+  tresser,
+  forger,
+  ciseler,
+  vanner,
+  tondre,
+  subodorer,
+  corroborer,
+  ablater,
+  démentir
+};
